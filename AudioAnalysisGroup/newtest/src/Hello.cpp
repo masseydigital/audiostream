@@ -9,7 +9,12 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+int main(int argc, char *argv[]) {
+	for (int x = 1; x < argc; x++)
+	{
+		cout << argv[x] << endl;
+	}
+
+
 	return 0;
 }
