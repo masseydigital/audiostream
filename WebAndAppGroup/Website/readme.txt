@@ -2,10 +2,12 @@ Make sure you have installed:
 
 Node.js
 
-Modules:
-express
-socket.io
-jplayer
+Modules: Install the following with "npm install moduleName"
+
+express //for directory organization
+socket.io //for realtime server communication to webpage
+jplayer //for potential audio player
+colors //cosmetics for command prompt
 
 Running the node local server:
 

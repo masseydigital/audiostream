@@ -1,5 +1,5 @@
 cd "C:\Program Files\nodejs"
 call nodevars.bat
-cd "C:\Your index.js directory goes here"
+cd "C:\Users\yourDir"
 node index.js
 cmd /k
