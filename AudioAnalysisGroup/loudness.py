@@ -9,8 +9,9 @@ loader = essentia.standard.MonoLoader(filename = filepath)
 
 audio = loader()
 
-loudnessExtractor = essentia.standard.Loudness()
+def loudnessCalculator(audioInput):
+	loudnessExtractor = essentia.standard.Loudness()
+	loudness = loudnessExtractor(audio)
+	return loudness
 
-loudness = loudnessExtractor(audio)
-
-print 'Loudness: %f' % loudness
+print 'Loudness: %f' % loudnessCalculator(audioInput = audio)
