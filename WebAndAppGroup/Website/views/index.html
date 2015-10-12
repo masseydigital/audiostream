@@ -5,28 +5,79 @@
     <link rel="stylesheet" href="font-awesome-animation.min.css">
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
+      #background-image {
+        background-color: black;
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        display: block;
+        background-image: url('images/test.jpg');
+        width: 1920px;
+        height: 1080px;
+        right: 100px;
+      }
+      #content {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+      }
       body { font: 13px Helvetica, Arial; }
+      #headerFont {color: white;}
+      #headerWrapper { background: #000; padding: 5px; position: absolute; top: 0; width: 100%;
+      }
       #playerWrapper { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      button {
+        background:linear-gradient(to bottom, #40b3ff, #09f);
+        border: 2px solid #91D2FF;
+        padding: 10px;
+        outline:none;
+        display: inline-block;
+        border-radius: 50%;
+
+      }
+      button:hover {
+        background: rgb(50, 224, 300);
+      }
+    
       audio {display:none;}
     </style>
     <script type="text/javascript">
-	var audioElement = document.createElement('player');
+    	var audioElement = document.createElement('player');
+      var playing = false;
+      function grabPlayingInfo()
+      {
+        return document.write("Playing audio: " + playing);
+      }
     </script>
 </head>
 <body>
-
-	<h3 style = "margin:auto">Spotidora.fm</h3>
-
+  <div id="background-image"></div>
+  <div id="content">
+  <div id="headerWrapper">
+	<h3 id="headerFont" style = "margin:auto">Spotidora.fm</h3>
+  <script type="text/javascript">grabPlayingInfo();</script>
+  </div>
 	<div id = "playerWrapper">
-	  <button onclick="document.getElementById('player').play()"><i class="fa fa-play"></i></button>
-	  <button onclick="document.getElementById('player').pause()"><i class="fa fa-pause"></i></button>
+	  <button id="player-button" onclick="
+      if(playing) {
+        document.getElementById('player').pause();
+        playing = false;
+        document.getElementById('player-button').className = 'fa fa-play';
+      } else {
+        document.getElementById('player').play();
+        playing = true;
+        document.getElementById('player-button').className = 'fa fa-pause';
+      }
+
+    " class="fa fa-play"></button>
 	  <button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
-	  <audio id='player' src="testAudio/as.mp3" preload="auto" controls></audio>
+	  <audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
 	  <button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
 	  <button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>
 	</div>
 	</form>
-
+  </div>
 </body>
 </html>
