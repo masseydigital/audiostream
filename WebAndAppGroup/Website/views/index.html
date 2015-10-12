@@ -1,19 +1,32 @@
 <html>
 <head>
     <title>Spotidora.fm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome-animation.min.css">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #playerWrapper { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      audio {display:none;}
+    </style>
+    <script type="text/javascript">
+	var audioElement = document.createElement('player');
+    </script>
 </head>
-
-<header>
-Header
-</header>
- 
 <body>
-<h3>Main Index Page</h3>
-<p>This is where the media player will go, along with some sort of login verification.</p>
 
-<footer>
-Footer
-</footer>
- 
+	<h3 style = "margin:auto">Spotidora.fm</h3>
+
+	<div id = "playerWrapper">
+	  <button onclick="document.getElementById('player').play()"><i class="fa fa-play"></i></button>
+	  <button onclick="document.getElementById('player').pause()"><i class="fa fa-pause"></i></button>
+	  <button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+	  <audio id='player' src="testAudio/as.mp3" preload="auto" controls></audio>
+	  <button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+	  <button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>
+	</div>
+	</form>
+
 </body>
 </html>
