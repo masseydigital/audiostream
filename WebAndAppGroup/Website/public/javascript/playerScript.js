@@ -1,10 +1,6 @@
 var audioElement = document.createElement('player');
       var playing = false;
       var looping = false;
-      function grabPlayingInfo()
-      {
-        return document.write("Playing audio: " + playing);
-      }
       //Volume
       function isKeyPressed(event) {
       console.log("Key Pressed");
