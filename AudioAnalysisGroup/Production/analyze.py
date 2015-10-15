@@ -46,6 +46,19 @@ def changeName(filepath, title, artist, album):
 
 # here we would define all of the essentia funcitions
 
+#Input audio signal and returns the loudness
+def loudnessCalculator(audioInput):
+	loudnessExtractor = essentia.standard.Loudness()
+	loudness = loudnessExtractor(audio)
+	return loudness
+
+#Input audio signal
+#returns the key, scale, and strength
+def keyCalculator(audioInput):
+	keyExtractor = essentia.standard.KeyExtractor()
+	key = keyExtractor(audioInput)
+	return key
+
 #################################################################################################
 
 
