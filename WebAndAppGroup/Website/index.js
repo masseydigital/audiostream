@@ -1,6 +1,7 @@
 //Load modules
 var express = require('express');
 var colors = require('colors');
+var jquery = require('jquery');
 
 var app = express();
 var port = 8000;
