@@ -59,6 +59,11 @@ def keyCalculator(audioInput):
 	key = keyExtractor(audioInput)
 	return key
 
+def getAudioVector(filepath):
+	loader = essentia.standard.MonoLoader(filename = filepath)
+	audio = loader()
+	return loader()
+
 #################################################################################################
 
 
