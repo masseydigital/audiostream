@@ -8,19 +8,19 @@
     <script src="javascript/playerScript.js"></script>
 </head>
 <body onkeypress="isKeyPressed(event)">
-  <div id="background-image"></div>
-  <div id="content">
-  <div id="headerWrapper">
-	<h3 id="headerFont" style = "margin:auto">Spotidora.fm</h3>
-  <h3 id="userGreet">Hello User!</h3>
-  </div>
+    <div id="background-image"></div>
+    <div id="content">
+        <div id="headerWrapper">
+            <h3 id="headerFont" style="margin:auto">Spotidora.fm</h3>
+            <h3 id="userGreet">Hello User!</h3>
+        </div>
 
 
-  <div id="mainPlayer">
-    <p>Main player goes here.</p>
-  </div>
-	<div id = "playerWrapper">
-	  <button id="player-button" onclick="
+        <div id="mainPlayer">
+            <p>Main player goes here.</p>
+        </div>
+        <div id="playerWrapper">
+            <button id="player-button" onclick="
       if(playing) {
         document.getElementById('player').pause();
         playing = false;
@@ -31,15 +31,16 @@
         document.getElementById('player-button').className = 'fa fa-pause';
       }
     " class="fa fa-play"></button>
-	  <button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
-	  <audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
-    <div id="defaultTimeline">
-    <p>Timeline</p>
+            <button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+            <audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
+
+            <button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+            <button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>
+            <div id="defaultTimeline">
+                <p>Timeline</p>
+            </div>
+        </div>
+
     </div>
-	  <button onclick="document.getElementById('player').volume-=0.1" ><i class="fa fa-volume-down"></i></button>
-	  <button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>
-	</div>
-	</form>
-  </div>
 </body>
 </html>

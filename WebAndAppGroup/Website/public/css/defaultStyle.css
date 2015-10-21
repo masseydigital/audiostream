@@ -77,5 +77,6 @@
         background: #4200f7;
         margin-top: 20px;
         border-radius: 15px;
+        display: inline-block;
       }    
       audio {display:none;}
