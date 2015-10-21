@@ -64,6 +64,11 @@ def getAudioVector(filepath):
 	audio = loader()
 	return loader()
 
+def getBPM(audioInput):
+	bpmextractor=essentia.standard.RhythmExtractor2013()
+	bpmvalues = bpmextractor(audioInput)
+	return bpmvalues[0]
+
 #################################################################################################
 
 
@@ -86,5 +91,10 @@ al = "Nothing Personal"
 #change the name and update the filepath
 filename = changeName(filepath, ti, ar, al)
 
+#get the audio vector of the .mp3 file
+audio = getAudioVector(filename)
+
+#get the bpm of the audio vector
+bpm = getBPM(audio)
 #for testing
 print filename
