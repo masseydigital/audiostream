@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>Spotidora.fm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome-animation.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/mediaelement-and-player.min.js"></script>
+    <style>
+    body {font-family: 'Roboto', sans-serif;}
+	
+
+#cover {
+	position: relative;
+	padding: 10px;
+
+}
+
+ 
+#playerOuterWrapper {
+  position: relative;
+  width: 680px;
+  height: 220px;
+  margin: 0 auto;
+  background: #4c4e5a;
+  background: -webkit-linear-gradient(top, #4c4e5a 0%, #2c2d33 100%);
+  background: -moz-linear-gradient(top, #4c4e5a 0%, #2c2d33 100%);
+  background: -o-linear-gradient(top, #4c4e5a 0%, #2c2d33 100%);
+  background: -ms-linear-gradient(top, #4c4e5a 0%, #2c2d33 100%);
+  background: linear-gradient(top, #4c4e5a 0%, #2c2d33 100%);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: white;
+  
+}
+#playerInnerWrapper {
+	position: relative;
+	left: 220px;
+	bottom: 170px;
+}
+#audio h2 {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ececec;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+    </style>
+    <script>
+	var playing = false;
+	var looping = false;
+
+	var audioPlayer = document.getElementById("audio-player");
+	
+	//Converts duration to min:sec
+	function readableDuration(seconds) {
+    sec = Math.floor( seconds );    
+    min = Math.floor( sec / 60 );
+    min = min >= 10 ? min : '0' + min;    
+    sec = Math.floor( sec % 60 );
+    sec = sec >= 10 ? sec : '0' + sec;    
+    return min + ':' + sec;
+	}
+	</script>
+
+</head>
+
+<body onkeypress="isKeyPressed(event)">
+<h2>Audio Player Debug:</h2>
+<p>This page has been added to work on the player itself in a secluded environment, so predefined scripts and css aren't a factor when debugging its features.</p>
+
+  <div id="playerOuterWrapper">
+  <img id="cover" src="images/defaultCover.png" alt="">
+  <div id="playerInnerWrapper">
+    <h3>Call of Duters - World War Won Me Over</h3>
+    
+    <audio id="audioPlayer" src="testAudio/test.mp3" type="audio/mp3" ontimeupdate="document.getElementById('tracktime').innerHTML = readableDuration(Math.floor(this.currentTime)) + ' / ' + readableDuration(Math.floor(this.duration));" controls="controls"><p>Your browser does not support this audio player!</p></audio>
+    <span id="tracktime">0 / 0</span>
+</div>
+</div>
+
+
+</body>
+</html>

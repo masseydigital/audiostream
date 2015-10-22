@@ -19,6 +19,10 @@ app.get('/login', function(req, res) {
     res.sendFile(__dirname + '/views/login.html');
     var userName, password; //No idea how this will work yet.
 });
+//Player Debug Directory
+app.get('/playerDebug', function(req, res) {
+    res.sendFile(__dirname + '/views/playerDebug.html');
+});
 
 app.listen(port);
 console.log(colors.magenta('Audio site listening on port ' + port));
