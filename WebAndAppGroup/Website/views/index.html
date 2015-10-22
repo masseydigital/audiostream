@@ -1,111 +1,72 @@
 <html>
-<head>
-    <title>Spotidora.fm</title>
-    <link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="font-awesome-animation.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
-    <script src="javascript/playerScript.js"></script>
-	<script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
-	<script type='text/javascript' src="javascript/toggleMenuScript.js"></script>
-</head>
+	<head>
+		<title>Spotidora.fm</title>
+		<link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
+		<link rel="stylesheet" type="text/css" href="css/sidebarStyle.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="font-awesome-animation.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+		<script src="javascript/playerScript.js"></script>
+		<script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
+		<script type='text/javascript' src="javascript/toggleMenuScript.js"></script>
+	</head>
 
-<style type='text/css'>
-		body {
-			background-image: url("images/background.jpg");
-		}
-		.sidebar-toggle {
-			position: absolute;		
-			top: 200px;
-			right: 2px;
-			width: 20px;
-			height: 40px;
-			background: purple;
-		}
-		
-		.sidebar-toggle:hover{
-			background: orange;
-		}
-		
-		.sidebar {
-			position: absolute;
-			top:0;
-			background: black;
-			width: 175px;
-			color: silver;
-			margin-left: -150px;
-			height: 100%;
-		}
+	<body onkeypress="isKeyPressed(event)">
 
-		.sidebar-list {
-			list-style-type: none;
-			padding: 0;
-			margin: 0;
-			position: absolute;
-			top: 50px;
-			width: 150px;
-			border-right: 1px solid #333;
-		}
-
-		.sidebar-list li {
-			padding: 10px;
-			border-bottom: 1px solid #333;
-		}
-	</style>
-
-<body onkeypress="isKeyPressed(event)">
-<div class="sidebar">
-		  <div class="sidebar-toggle"></div>
-		  <ul class="sidebar-list">
-			<li><button id="player-button" onclick="
-					if(playing) {
-					document.getElementById('player').pause();
-					playing = false;
-					document.getElementById('player-button').className = 'fa fa-play';
-					} else {
-						document.getElementById('player').play();
-						playing = true;
-						document.getElementById('player-button').className = 'fa fa-pause';
-					}
-				" class="fa fa-play"></button></li>
-			<li><button onclick="document.getElementById('player').volume-=0.1" ><i class="fa fa-volume-down"></i></button></li>
-			<li><button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button></li>
-			<li>Menu item 4</li>
-			<li>Menu item 5</li>
-		  </ul>
+		<div class="sidebar">
+			<div class="sidebar-toggle"></div>
+			<ul class="sidebar-list">
+				<li>
+					<button id="player-button" onclick="
+						if(playing) {
+						document.getElementById('player').pause();
+						playing = false;
+						document.getElementById('player-button').className = 'fa fa-play';
+						} else {
+							document.getElementById('player').play();
+							playing = true;
+							document.getElementById('player-button').className = 'fa fa-pause';
+						}
+						" class="fa fa-play">
+					</button>
+				</li>
+				<li><button onclick="document.getElementById('player').volume-=0.1" ><i class="fa fa-volume-down"></i></button></li>
+				<li><button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button></li>
+				<li>Menu item 4</li>
+				<li>Menu item 5</li>
+			</ul>
 		</div>
-    <div class="content">
-        <div id="headerWrapper">
-            <h3 id="headerFont" style="margin:auto">Spotidora.fm</h3>
-            <h3 id="userGreet">Hello User!</h3>
-        </div>
+		
+		<div class="content">
+			<div id="headerWrapper">
+				<h3 id="headerFont" style="margin:auto">Spotidora.fm</h3>
+				<h3 id="userGreet">Hello User!</h3>
+			</div>
 
-
-        <div id="mainPlayer">
-            <p>Main player goes here.</p>
-        </div>
-        <div id="playerWrapper">
-            <button id="player-button" onclick="
-      if(playing) {
-        document.getElementById('player').pause();
-        playing = false;
-        document.getElementById('player-button').className = 'fa fa-play';
-      } else {
-        document.getElementById('player').play();
-        playing = true;
-        document.getElementById('player-button').className = 'fa fa-pause';
-      }
-    " class="fa fa-play"></button>
-            <button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
-            <audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
-
-            <button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
-            <button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>
-            <div id="defaultTimeline">
-                <p>Timeline</p>
-            </div>
-        </div>
-
-    </div>
-</body>
+			<div id="mainPlayer">
+				<p>Main player goes here.</p>
+			</div>
+			
+			<div id="playerWrapper">
+				<button id="player-button" onclick="
+				if(playing) {
+				document.getElementById('player').pause();
+				playing = false;
+				document.getElementById('player-button').className = 'fa fa-play';
+				} else {
+				document.getElementById('player').play();
+				playing = true;
+				document.getElementById('player-button').className = 'fa fa-pause';
+				}
+				" class="fa fa-play"></button>
+				<button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+				<audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
+				<button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+				<button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>				
+				<div id="defaultTimeline">
+					<p>Timeline</p>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

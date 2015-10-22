@@ -1,16 +1,8 @@
 * {margin: 0;}
-      #background-image {
-        background-color: black;
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        display: block;
-        background-image: url('../images/test.jpg');
-        width: 1920px;
-        height: 1080px;
-        right: 100px;
-      }
+      body {
+		background-image: url("../images/background.jpg");
+	}
+	
       #content {
         position: fixed;
         left: 0;
@@ -60,16 +52,22 @@
         opacity:.4;
       }
       #playerWrapper:hover {opacity: 1;}
-      button {
+      
+	  button {
         background:linear-gradient(to bottom, #40b3ff, #09f);
-        border: 2px solid #91D2FF;
+		color:#f5f5f5;
+		background: #464646;
+		border: 2px solid #f5f5f5;
+		width:50px;
+		height:50px;
         padding: 10px;
         outline:none;
         display: inline-block;
         border-radius: 50%;
+
       }
       button:hover {
-        background: rgb(50, 224, 300);
+        background: rgb(128, 0, 128);
       }
       #defaultTimeline {
         width: 400px;

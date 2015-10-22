@@ -1,0 +1,37 @@
+.sidebar-toggle {
+	position: absolute;		
+	top: 200px;
+	right: 2px;
+	width: 20px;
+	height: 40px;
+	background: purple;
+}
+
+.sidebar-toggle:hover{
+	background: orange;
+}
+
+.sidebar {
+	position: absolute;
+	top:0;
+	background: black;
+	width: 175px;
+	color: silver;
+	margin-left: -150px;
+	height: 100%;
+}
+
+.sidebar-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 50px;
+	width: 150px;
+	border-right: 1px solid #333;
+}
+
+.sidebar-list li {
+	padding: 10px;
+	border-bottom: 1px solid #333;
+}
