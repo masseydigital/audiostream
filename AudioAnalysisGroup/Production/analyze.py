@@ -3,6 +3,9 @@ import essentia.standard
 import os
 import sys
 
+fileStorageFolder = "server/"
+
+
 ##########################################functions###############################################
 
 #takes the full filepath (example: /home/bzachmann/Documents/test.mp3) 
@@ -37,13 +40,18 @@ def changeName(filepath, title, artist, album):
 
 #Inputs an array value and a path and will append to that text file path
 
-def AppendToText(dataList, textFilePath):
+def appendToText(dataList, textFilePath):
 
 	with open(textFilePath, 'a') as file:
 		for item in dataList:
-			file.write("{}; ".format(item))
+			file.write("{};; ".format(item))
 		file.write("\n")
 
+def makeServerPath(filepath):
+	filesplits = os.path.split(filepath)
+	name = filesplits[1]
+	serverpath = os.path.join(fileStorageFolder, name)
+	return serverpath
 
 #################################################################################################
 
@@ -79,13 +87,13 @@ def getBPM(audioInput):
 	return bpmvalues[0]
 
 #return values will be 0=title, 1=Artist, 2=Ablum, 3=Genre, 4=Duration
-def GetTagInfo(filename):
+def getTagInfo(filepath):
 
-	reader = essentia.standard.MetadataReader(filename)
+	reader = essentia.standard.MetadataReader(filename = filepath)
 	metadata = reader()
 	a = (metadata[0], metadata[1], metadata[2], metadata[4], metadata[8])
 
-	return(a);
+	return a;
 
 
 
@@ -99,25 +107,35 @@ def GetTagInfo(filename):
 ##################################### MAIN ######################################################
 
 
+serverFolder = "server/"
+
+#here we should check if the arguments are correct
+
 #take the argument from command line and find the filepath
 filepath = sys.argv[1]
+textfilepath = sys.argv[2]
 
 #here we should check if the file really exists(use os. methods)
+#and if it is a .mp3
 
+tags = getTagInfo(filepath)
 
-#this constant info will be replaced with a metadata finder funciton
-ti = "Hello, Brooklyn"
-ar = "All Time Low"
-al = "Nothing Personal"
-####
+#here we should check if all the metadata is in the list( not missing any)
 
 #change the name and update the filepath
-filename = changeName(filepath, ti, ar, al)
+filename = changeName(filepath, tags[0], tags[1], tags[2])
 
 #get the audio vector of the .mp3 file
-audio = getAudioVector(filename)
+#audio = getAudioVector(filename)
 
 #get the bpm of the audio vector
-bpm = getBPM(audio)
+#bpm = getBPM(audio)
 #for testing
-print filename
+
+serverPath = makeServerPath(filename)
+
+toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4]]
+
+appendToText(toFileList, textfilepath)
+
+
