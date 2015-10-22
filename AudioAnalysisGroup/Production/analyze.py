@@ -35,6 +35,15 @@ def changeName(filepath, title, artist, album):
 	os.rename(filepath, newfilepath)
 	return newfilepath
 
+#Inputs an array value and a path and will append to that text file path
+
+def AppendToText(dataList, textFilePath):
+
+	with open(textFilePath, 'a') as file:
+		for item in dataList:
+			file.write("{}; ".format(item))
+		file.write("\n")
+
 
 #################################################################################################
 
@@ -68,6 +77,20 @@ def getBPM(audioInput):
 	bpmextractor=essentia.standard.RhythmExtractor2013()
 	bpmvalues = bpmextractor(audioInput)
 	return bpmvalues[0]
+
+#return values will be 0=title, 1=Artist, 2=Ablum, 3=Genre, 4=Duration
+def GetTagInfo(filename):
+
+	reader = essentia.standard.MetadataReader(filename)
+	metadata = reader()
+	a = (metadata[0], metadata[1], metadata[2], metadata[4], metadata[8])
+
+	return(a);
+
+
+
+
+
 
 #################################################################################################
 
