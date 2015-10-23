@@ -8,13 +8,19 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
 		<script src="javascript/playerScript.js"></script>
 		<script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
-		<script type='text/javascript' src="javascript/toggleMenuScript.js"></script>
+		<script type='text/javascript' src="javascript/toggleMenuScript.js"></script>		
 	</head>
 
 	<body onkeypress="isKeyPressed(event)">
 
 		<div class="sidebar">
-			<div class="sidebar-toggle"></div>
+			<div id="sidebar-toggle">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			
 			<ul class="sidebar-list">
 				<li>
 					<button id="player-button" onclick="

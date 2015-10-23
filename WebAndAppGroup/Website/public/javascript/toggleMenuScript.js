@@ -1,7 +1,7 @@
 $(window).load(function(){
 	$(document).ready(function() {
 		sidebarStatus = false;
-		$('.sidebar-toggle').click(function() {
+		$('#sidebar-toggle').click(function() {
 			if (sidebarStatus == false) {
 				
 				$('.sidebar').animate({
@@ -33,3 +33,9 @@ $(window).load(function(){
 		});
 	});
 });
+
+$(document).ready(function(){
+			$('#sidebar-toggle').click(function(){
+				$(this).toggleClass('open');
+			});
+		});
