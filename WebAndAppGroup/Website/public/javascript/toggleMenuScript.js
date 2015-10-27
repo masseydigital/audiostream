@@ -7,26 +7,26 @@ $(window).load(function(){
 				$('.sidebar').animate({
 					marginLeft: "0px",
 					opacity: "1"
-				}, 1000);
+				}, 400);
 			
 				$('.content').animate({
-					marginLeft: "150px",
+					marginLeft: "156px",
 					opacity: "1"
-				}, 1000);
+				}, 400);
 				
 				sidebarStatus = true;
 			}
 			
 			else {
 				$('.sidebar').animate({
-					marginLeft: "-150px",
+					marginLeft: "-156px",
 					opacity: "1"
-				}, 1000);
+				}, 400);
 			  
 				$('.content').animate({
 					marginLeft: "0px",
 					opacity: "1"
-					}, 1000);
+					}, 400);
 					
 				sidebarStatus = false;
 			}	

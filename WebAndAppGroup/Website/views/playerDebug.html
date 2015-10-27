@@ -65,7 +65,33 @@
     sec = sec >= 10 ? sec : '0' + sec;    
     return min + ':' + sec;
 	}
-	</script>
+
+  function getSongMeta(url)
+  {
+      var file = url;
+      
+      function callback() 
+      {
+          var pic = ID3.getTag(file, "picture");
+          var artist = ID3.getTag(file, "artist");
+          var title = ID3.getTag(file, "title");
+          var album = ID3.getTag(file, "album");
+          
+          document.getElementById('id3_artist').innerHTML = artist;
+          document.getElementById('id3_title').innerHTML = title;
+          //document.getElementById('id3_album').innerHTML = album;
+
+          var albumcoverimg = document.getElementById('albumcover');
+          albumcoverimg.src = 'data:' + pic.format + ';base64,' + Base64.encode(pic.data);
+        albumcoverimg.style.opacity = "1";
+        albumcoverimg.style.visibility = "visible";
+    };
+    
+    ID3.loadTags(url, callback, ["picture", "artist", "title", "album"]);
+  }
+  getSongMeta("testAudio/test.mp3");
+
+</script>
 
 </head>
 
@@ -76,10 +102,12 @@
   <div id="playerOuterWrapper">
   <img id="cover" src="images/defaultCover.png" alt="">
   <div id="playerInnerWrapper">
-    <h3>Call of Duters - World War Won Me Over</h3>
+    <h3>Artist - Title</h3>
     
     <audio id="audioPlayer" src="testAudio/test.mp3" type="audio/mp3" ontimeupdate="document.getElementById('tracktime').innerHTML = readableDuration(Math.floor(this.currentTime)) + ' / ' + readableDuration(Math.floor(this.duration));" controls="controls"><p>Your browser does not support this audio player!</p></audio>
     <span id="tracktime">0 / 0</span>
+    <span id="id3_artist"></span>
+    <span id="id3_title"></span>
 </div>
 </div>
 

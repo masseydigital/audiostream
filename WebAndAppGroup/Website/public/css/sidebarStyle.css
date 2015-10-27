@@ -4,8 +4,8 @@
 	background: black;
 	width: 190px;
 	color: silver;
-	margin-left: -150px;
-	height: 100%;
+	margin-left: -156px;
+	height: 93%;
 }
 
 .sidebar-list {
@@ -25,7 +25,7 @@
 
 #sidebar-toggle{
 	position: absolute;		
-	top: 5px;
+	top: 10px;
 	right: 2px;
 	  width: 30px;
 	  height: 22px;
@@ -97,4 +97,11 @@
 	top: 18px;
 	width: 0%;
 	left: 50%;
+}
+
+#searchBar {
+	position: absolute;
+	border-radius: 25px;
+	left: -4px;
+	top: 10px;
 }

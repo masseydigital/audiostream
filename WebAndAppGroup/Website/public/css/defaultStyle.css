@@ -1,4 +1,9 @@
-* {margin: 0;}
+* {
+  margin: 0;
+  }
+ *:focus {
+    outline: 0;
+} 
       body {
 		background-image: url("../images/background.jpg");
 	}
@@ -33,10 +38,12 @@
       }
       #mainPlayer {
         margin: auto;
+        position: relative;
+        bottom: 60px;
         text-align: center;
         height: 400px;
         width: 330px;
-        border:3px solid #40b3ff;
+        border:3px solid #673AB7;
         padding: 10px;
         background-color: black;
         color: white;
@@ -47,9 +54,10 @@
         padding: 3px;
         position: fixed;
         margin: center;
-        bottom: 0;
+        bottom: 0%;
         width: 100%;
         opacity:.4;
+        right: 0px;
       }
       #playerWrapper:hover {opacity: 1;}
       

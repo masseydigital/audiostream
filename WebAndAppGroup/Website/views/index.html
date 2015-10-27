@@ -23,6 +23,9 @@
 			
 			<ul class="sidebar-list">
 				<li>
+				<input id="searchBar" type="text" name="search">
+				</li>
+				<li>
 					<button id="player-button" onclick="
 						if(playing) {
 						document.getElementById('player').pause();
@@ -67,11 +70,12 @@
 				" class="fa fa-play"></button>
 				<button onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
 				<audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
-				<button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
-				<button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>				
 				<div id="defaultTimeline">
 					<p>Timeline</p>
 				</div>
+				<button onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+				<button onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>				
+				
 			</div>
 		</div>
 	</body>
