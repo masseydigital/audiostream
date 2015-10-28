@@ -64,17 +64,24 @@ def makeServerPath(filepath):
 # here we would define all of the essentia funcitions
 
 #Input audio signal and returns the loudness
-def loudnessCalculator(audioInput):
+def getLoudness(audioInput):
 	loudnessExtractor = essentia.standard.Loudness()
 	loudness = loudnessExtractor(audio)
 	return loudness
 
 #Input audio signal
 #returns the key, scale, and strength
-def keyCalculator(audioInput):
+def getKey(audioInput):
 	keyExtractor = essentia.standard.KeyExtractor()
 	key = keyExtractor(audioInput)
 	return key
+#Input audio signal
+#returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
+#chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
+def getTone(audioInput):
+	tonalExtractor = essentia.standard.TonalExtractor()
+	tone = tonalExtractor(audio)
+	return tone
 
 def getAudioVector(filepath):
 	loader = essentia.standard.MonoLoader(filename = filepath)
