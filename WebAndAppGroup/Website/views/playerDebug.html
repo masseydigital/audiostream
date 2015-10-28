@@ -7,16 +7,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="js/mediaelement-and-player.min.js"></script>
     <style>
-    body {font-family: 'Roboto', sans-serif;}
-	
-
+body {font-family: 'Roboto', sans-serif;}
+audio {display:none;}
 #cover {
 	position: relative;
 	padding: 10px;
 
 }
-
- 
 #playerOuterWrapper {
   position: relative;
   width: 680px;
@@ -31,13 +28,19 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  color: white;
-  
+  color: white; 
 }
 #playerInnerWrapper {
 	position: relative;
 	left: 220px;
 	bottom: 170px;
+}
+.playerButton{
+  height:30px; 
+  width: 30px;
+  border: none;
+  background-size: 50% 50%;
+  background-position: center;
 }
 #audio h2 {
   position: absolute;
@@ -49,13 +52,31 @@
   color: #ececec;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
+#timeline {
+  position: fixed;
+  width: 300px;
+  height: 20px;
+  background: #4200f7;
+  margin-top: 20px;
+  float: left;
+  border-radius: 15px;
+  bottom: 480px;
+}
+#playhead{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 1px;
+  background: rgba(0, 255, 196, 0.82);
+}
     </style>
     <script>
 	var playing = false;
 	var looping = false;
 
 	var audioPlayer = document.getElementById("audio-player");
-	
+	var music = document.getElementById('playhead');
+
 	//Converts duration to min:sec
 	function readableDuration(seconds) {
     sec = Math.floor( seconds );    
@@ -66,31 +87,7 @@
     return min + ':' + sec;
 	}
 
-  function getSongMeta(url)
-  {
-      var file = url;
-      
-      function callback() 
-      {
-          var pic = ID3.getTag(file, "picture");
-          var artist = ID3.getTag(file, "artist");
-          var title = ID3.getTag(file, "title");
-          var album = ID3.getTag(file, "album");
-          
-          document.getElementById('id3_artist').innerHTML = artist;
-          document.getElementById('id3_title').innerHTML = title;
-          //document.getElementById('id3_album').innerHTML = album;
-
-          var albumcoverimg = document.getElementById('albumcover');
-          albumcoverimg.src = 'data:' + pic.format + ';base64,' + Base64.encode(pic.data);
-        albumcoverimg.style.opacity = "1";
-        albumcoverimg.style.visibility = "visible";
-    };
-    
-    ID3.loadTags(url, callback, ["picture", "artist", "title", "album"]);
-  }
-  getSongMeta("testAudio/test.mp3");
-
+  
 </script>
 
 </head>
@@ -103,11 +100,27 @@
   <img id="cover" src="images/defaultCover.png" alt="">
   <div id="playerInnerWrapper">
     <h3>Artist - Title</h3>
-    
-    <audio id="audioPlayer" src="testAudio/test.mp3" type="audio/mp3" ontimeupdate="document.getElementById('tracktime').innerHTML = readableDuration(Math.floor(this.currentTime)) + ' / ' + readableDuration(Math.floor(this.duration));" controls="controls"><p>Your browser does not support this audio player!</p></audio>
-    <span id="tracktime">0 / 0</span>
-    <span id="id3_artist"></span>
-    <span id="id3_title"></span>
+    <button id="playPauseButton" onclick="
+        if(playing) {
+        document.getElementById('player').pause();
+        playing = false;
+        document.getElementById('playPauseButton').className = 'fa fa-play';
+        } else {
+        document.getElementById('player').play();
+        playing = true;
+        document.getElementById('playPauseButton').className = 'fa fa-pause';
+        }
+        " class="fa fa-play"></button>
+        <button class="playerButton" onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+        <button class="playerButton" onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+        <button class="playerButton" onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>   
+        <audio id='player' src="testAudio/test.mp3" preload="auto" ontimeupdate="document.getElementById('tracktime').innerHTML = readableDuration(Math.floor(this.currentTime)) + ' / ' + readableDuration(Math.floor(this.duration));" controls>
+          <p>Your browser does not suppport this audio player!</p></audio>
+        <div id="timeline">
+          <div id="playhead"></div>
+        </div>
+       
+         <span id="tracktime">00:00</span>
 </div>
 </div>
 
