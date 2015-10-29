@@ -2,6 +2,7 @@ import essentia
 import essentia.standard
 import os
 import sys
+import logging
 
 fileStorageFolder = "server/"
 
@@ -52,6 +53,22 @@ def makeServerPath(filepath):
 	name = filesplits[1]
 	serverpath = os.path.join(fileStorageFolder, name)
 	return serverpath
+
+def makeLogPath(filepath):
+	filesplits = os.path.split(filepath)
+	path = filesplits[0]
+	logpath = os.path.join(path, "log.txt")
+	return logpath
+
+def setupLogging(pathtoFile):
+	logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s', datefmt='%m-%d %H:%M', filename= makeLogPath(pathtoFile), filemode='w')
+	console = logging.StreamHandler()
+	console.setLevel(logging.INFO)
+
+	formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+
+	console.setFormatter(formatter)
+	logging.getLogger('').addHandler(console)
 
 #################################################################################################
 
@@ -114,7 +131,7 @@ def getTagInfo(filepath):
 ##################################### MAIN ######################################################
 
 
-serverFolder = "server/"
+#serverFolder = "server/"
 
 #here we should check if the arguments are correct
 
@@ -122,15 +139,25 @@ serverFolder = "server/"
 filepath = sys.argv[1]
 textfilepath = sys.argv[2]
 
+#setup the logging to put the log file in the same root folder that the .mp3 file is it
+setupLogging(filepath)
+loggerSong = logging.getLogger(os.path.split(filepath)[1])
+loggerSong.info("Logging Enabled")
+
 #here we should check if the file really exists(use os. methods)
 #and if it is a .mp3
 
+loggerSong.info("getting tag info")
 tags = getTagInfo(filepath)
+loggerSong.info("done getting tag info")
 
 #here we should check if all the metadata is in the list( not missing any)
 
 #change the name and update the filepath
+loggerSong.info("changing the filename")
 filename = changeName(filepath, tags[0], tags[1], tags[2])
+loggerSong = logging.getLogger(os.path.split(filename)[1]) #changes the name of the logger so that it has the new .mp3 name
+loggerSong.info("renamed filename to " + os.path.split(filename)[1])
 
 #get the audio vector of the .mp3 file
 #audio = getAudioVector(filename)
