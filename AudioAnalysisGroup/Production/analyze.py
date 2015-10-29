@@ -131,45 +131,49 @@ def getTagInfo(filepath):
 ##################################### MAIN ######################################################
 
 
-#serverFolder = "server/"
 
-#here we should check if the arguments are correct
+if((len(sys.argv) < 3) or (len(sys.argv) > 3)):
+	print "Incorrect Number of Arguments.  Specify filepath to input .mp3 and filepath to output .txt"
+else:
+	#here we should check if the arguments are correct
 
-#take the argument from command line and find the filepath
-filepath = sys.argv[1]
-textfilepath = sys.argv[2]
+	#take the argument from command line and find the filepath
+	filepath = sys.argv[1]
+	textfilepath = sys.argv[2]
 
-#setup the logging to put the log file in the same root folder that the .mp3 file is it
-setupLogging(filepath)
-loggerSong = logging.getLogger(os.path.split(filepath)[1])
-loggerSong.info("Logging Enabled")
 
-#here we should check if the file really exists(use os. methods)
-#and if it is a .mp3
 
-loggerSong.info("getting tag info")
-tags = getTagInfo(filepath)
-loggerSong.info("done getting tag info")
+	#setup the logging to put the log file in the same root folder that the .mp3 file is it
+	setupLogging(filepath)
+	loggerSong = logging.getLogger(os.path.split(filepath)[1])
+	loggerSong.info("Logging Enabled")
 
-#here we should check if all the metadata is in the list( not missing any)
+	#here we should check if the file really exists(use os. methods)
+	#and if it is a .mp3
 
-#change the name and update the filepath
-loggerSong.info("changing the filename")
-filename = changeName(filepath, tags[0], tags[1], tags[2])
-loggerSong = logging.getLogger(os.path.split(filename)[1]) #changes the name of the logger so that it has the new .mp3 name
-loggerSong.info("renamed filename to " + os.path.split(filename)[1])
+	loggerSong.info("getting tag info")
+	tags = getTagInfo(filepath)
+	loggerSong.info("done getting tag info")
 
-#get the audio vector of the .mp3 file
-#audio = getAudioVector(filename)
+	#here we should check if all the metadata is in the list( not missing any)
 
-#get the bpm of the audio vector
-#bpm = getBPM(audio)
-#for testing
+	#change the name and update the filepath
+	loggerSong.info("changing the filename")
+	filename = changeName(filepath, tags[0], tags[1], tags[2])
+	loggerSong = logging.getLogger(os.path.split(filename)[1]) #changes the name of the logger so that it has the new .mp3 name
+	loggerSong.info("renamed filename to " + os.path.split(filename)[1])
 
-serverPath = makeServerPath(filename)
+	#get the audio vector of the .mp3 file
+	#audio = getAudioVector(filename)
 
-toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4]]
+	#get the bpm of the audio vector
+	#bpm = getBPM(audio)
+	#for testing
 
-appendToText(toFileList, textfilepath)
+	serverPath = makeServerPath(filename)
+
+	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4]]
+
+	appendToText(toFileList, textfilepath)
 
 
