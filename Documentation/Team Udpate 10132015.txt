@@ -1,0 +1,45 @@
+Audio Analysis
+Update on what our group accomplished this week:
+·         We developed a script that reads the metadata tags associated to each file.  This allows us to obtain the following info
+o   Title
+o   Artist
+o   Album
+o   Genre
+o   Year
+o   Song Length
+·         Using the metadata information, I developed a script that renames the file in the format:
+o   Song-title_artist-name_album-name.mp3
+o   This will help our script to find if a song with the same metadata has already been uploaded.
+o   It will also keep the song storage location organized
+·         We also got an algorithm working that finds the BPM of a song.  It has a few problems though
+o   Songs like “Welcome to the Black Parade” that have a very slow part and a very fast part don’t work very well.  The BPM is averaged in this case
+o   Songs like “Somethings Gotta Give” by All Time Low also don’t work very well.  The drummer only hits a bass or a snare ever 1st and 3rd beats per measure.  This makes the algorithm calculate the BPM to be half of what it should be.
+o   When the drummer hits every beat, the algorithm is very accurate.
+ 
+ 
+Questions and concerns:
+·         By next week, one of our group members could be devoted to exporting our data to database.  I will need some help from Colton on this to guide me in a starting direction.  This can wait if needed though.  But we are getting close to the point where we could start that.
+
+
+Web/App
+Last weeks Web Development Accomplishments:
+    -Branched the master repo and showed members how to properly use desktop Github
+    -Made a list of potential modules to use for playing audio, plus any additional modules required for the website to function
+    -Educated group on how to install modules, how Express works, and how to run the current project
+    -Installed and linked the project as a workspace in Webstorm
+Questions/Concerns:
+    -Biggest concern is lethargy. We were meeting after every class, but 30 minutes to discuss what we were going to do definitely wasn't enough. I scheduled a real meeting where we get stuff done every Wednesday instead. It actually went really well, but because I wan't doing this in the first place, none of my team members did what I had asked them to do the week before (i.e the majority of this weeks accomplishments).
+    -I might need some assistance in choosing a proper music player and figuring out how it works. We should have had this done a week ago but for some reason I keep hitting roadblocks. Turns out it's a lot more difficult than I thought it would be. There's jPlayer, speaker, etc. Some of them are outdated, some are updated but still won't run in the current project, some are much more complicated than they need to be, the list goes on. I might need some help with that over the next week.
+
+
+Database
+Database team doesn't have quite as long a list of items accomplished but what was done is important going forward.
+- discussed revisions to the database structure modeled last week to better normalize and reduce redundancy of information. This will improve query speeds as it will be easier to find songs in certain genres and by particular artists.
+- created sql table creation commands that can be ran in any database management system. This means we will be able to easily switch between any DBMS that uses sql should incompatibilities to the other systems be made apparent.
+- this coming week we'll research node compatibility and try and have a first version of the database which we'll be able to try connecting with the other systems.
+- further documents regarding our work will be submitted in a separate email once put together. Send me any questions regarding interacting with the database though we'll have a better grasp on specifics by the end of this coming week.
+
+
+
+
+
