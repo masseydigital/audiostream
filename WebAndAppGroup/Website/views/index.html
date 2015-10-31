@@ -50,28 +50,47 @@
 			</div>
 
 			<div id="mainPlayer">
-				<p>Main player goes here.</p>
-			</div>
-			
-			<div id="playerWrapper">
 				<button id="playPauseButton" onclick="
 				if(playing) {
-				document.getElementById('player').pause();
 				playing = false;
 				document.getElementById('playPauseButton').className = 'fa fa-play';
 				} else {
-				document.getElementById('player').play();
 				playing = true;
 				document.getElementById('playPauseButton').className = 'fa fa-pause';
 				}
+				playPause('song');
 				" class="fa fa-play"></button>
-				<button class="playerButton" onclick="document.getElementById('player').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
-				<button class="playerButton" onclick="document.getElementById('player').volume-=0.1"><i class="fa fa-volume-down"></i></button>
-				<button class="playerButton" onclick="document.getElementById('player').volume+=0.1"><i class="fa fa-volume-up"></i></button>				
-				<audio id='player' src="testAudio/test.mp3" preload="auto" controls></audio>
-				<div id="defaultTimeline">
-					<p>Timeline</p>
+				<button class="playerButton" onclick="document.getElementById('song').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+				<button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+				<button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button>			
+				
+			</div>
+			
+			<div id="playerWrapper">
+				<div id="audioplayer" class="size-med">
+				  <div id="songSlider" onclick="setSongPosition(this,event)">
+				  	<div id="songTimeA">0:00</div>
+				  	<div id="songTimeB">2:14</div>
+				  	<div id="trackProgress">
+				  		<div id="songTimeC">0:00</div>
+				  		<div id="songTimeD">&hellip;</div>
+				  	</div>
+				  </div>
+				  <div id="volume-container">
+				    <div id="volume" onclick="muteAudio()"><div id="volume-icon"></div><span>)</span><span>)</span><span>)</span></div>
+				    <div id="volumeUp" onclick="changeVolume(10, 'up')">+</div><br>
+				    <div id="volumeDown" onclick="changeVolume(10, 'down')">-</div>
+				    <div id="volumeMeter" onclick="setNewVolume(this,event)"><div id="volumeStatus"></div></div>
+				  </div>
 				</div>
+
+
+
+				<audio id="song" ontimeupdate="updateTime()">
+				<source src="testAudio/test.mp3"/>
+				  Your browser does not support the audio tag.
+				</audio>
+				
 			</div>
 		</div>
 	</body>
