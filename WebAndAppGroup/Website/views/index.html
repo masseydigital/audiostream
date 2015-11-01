@@ -1,19 +1,97 @@
 <html>
-<head>
-    <title>Spotidora.fm</title>
-</head>
+	<head>
+		<title>Spotidora.fm</title>
+		<link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
+		<link rel="stylesheet" type="text/css" href="css/sidebarStyle.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="font-awesome-animation.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+		<script src="javascript/playerScript.js"></script>
+		<script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
+		<script type='text/javascript' src="javascript/toggleMenuScript.js"></script>
+	</head>
 
-<header>
-Header
-</header>
- 
-<body>
-<h3>Main Index Page</h3>
-<p>This is where the media player will go, along with some sort of login verification.</p>
+	<body onkeypress="isKeyPressed(event)">
 
-<footer>
-Footer
-</footer>
- 
-</body>
+		<div class="sidebar">
+			<div id="sidebar-toggle">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			
+			<ul class="sidebar-list">
+				<li>
+				<input id="searchBar" type="text" name="search">
+				</li>
+				<li>
+				
+				</li>
+				<li>
+				<button id="sidebarButton" type="button">testTab</button>
+				</li>
+				<li>
+				Playlist_2
+				</li>
+				<li>
+				Playlist_3
+				</li>
+				<li>
+				Playlist_4
+				</li>
+			</ul>
+		</div>
+		
+		<div class="content">
+			<div id="headerWrapper">
+				<h3 id="headerFont" style="margin:auto">Spotidora.fm</h3>
+				<h3 id="userGreet">Hello User!</h3>
+			</div>
+
+			<div id="mainPlayer">
+				<button id="playPauseButton" onclick="
+				if(playing) {
+				playing = false;
+				document.getElementById('playPauseButton').className = 'fa fa-play';
+				} else {
+				playing = true;
+				document.getElementById('playPauseButton').className = 'fa fa-pause';
+				}
+				playPause('song');
+				" class="fa fa-play"></button>
+				<button class="playerButton" onclick="document.getElementById('song').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+				<button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button>
+				<button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button>			
+				
+			</div>
+			
+			<div id="playerWrapper">
+				<div id="audioplayer" class="size-med">
+				  <div id="songSlider" onclick="setSongPosition(this,event)">
+				  	<div id="songTimeA">0:00</div>
+				  	<div id="songTimeB">2:14</div>
+				  	<div id="trackProgress">
+				  		<div id="songTimeC">0:00</div>
+				  		<div id="songTimeD">&hellip;</div>
+				  	</div>
+				  </div>
+				  <div id="volume-container">
+				    <div id="volume" onclick="muteAudio()"><div id="volume-icon"></div><span>)</span><span>)</span><span>)</span></div>
+				    <div id="volumeUp" onclick="changeVolume(10, 'up')">+</div><br>
+				    <div id="volumeDown" onclick="changeVolume(10, 'down')">-</div>
+				    <div id="volumeMeter" onclick="setNewVolume(this,event)"><div id="volumeStatus"></div></div>
+				  </div>
+				</div>
+
+
+
+				<audio id="song" ontimeupdate="updateTime()">
+				<source src="testAudio/test.mp3"/>
+				  Your browser does not support the audio tag.
+				</audio>
+				
+			</div>
+		</div>
+	</body>
 </html>

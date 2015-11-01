@@ -1,22 +1,29 @@
+//Load modules
 var express = require('express');
+var colors = require('colors');
+var jquery = require('jquery');
+
 var app = express();
-var port = 8080;
+var port = 8000;
 
-
+//Where html documents grab stuff for the site
 app.use(express.static('public'));
 
-//var htmlDir = require('path').join(__dirname, '/html');
-//app.use(express.static(htmlDir));
-
- //Defining url directories
+//Defining url directories
+//Default Directory
 app.get('/', function(req, res) {
-    res.sendfile('./views/index.html');
+    res.sendFile(__dirname + '/views/index.html');
 });
- 
+//Login Directory
 app.get('/login', function(req, res) {
-    res.sendfile('./views/login.html');
+    res.sendFile(__dirname + '/views/login.html');
+    var userName, password; //No idea how this will work yet.
+});
+//Player Debug Directory
+app.get('/playerDebug', function(req, res) {
+    res.sendFile(__dirname + '/views/playerDebug.html');
 });
 
-
-console.log("Listening on port " + port + "...");
 app.listen(port);
+console.log(colors.magenta('Audio site listening on port ' + port));
+
