@@ -9,6 +9,17 @@ fileStorageFolder = "server/"
 
 ##########################################functions###############################################
 
+#parameter is a directory for the music files
+#will print all directories and retrun all directories in an array
+def walkDir(filepath): 
+	a = []
+	for root, dirs, files in os.walk(filepath):
+		for file in files:
+			if file.endswith(".mp3"):
+				a.append(os.path.join(root, file))
+	print(a) #unneccesary if returning, only used for checking files
+	return (a)
+
 #takes the full filepath (example: /home/bzachmann/Documents/test.mp3) 
 #and some meta data to format a new filename and rename the file in the filepath
 #the function returns the new filepath
