@@ -4,6 +4,8 @@ import os
 import sys
 import logging
 
+#########################################constant variables######################################
+
 fileStorageFolder = "server/"
 
 
@@ -11,13 +13,13 @@ fileStorageFolder = "server/"
 
 #parameter is a directory for the music files
 #will print all directories and retrun all directories in an array
-def walkDir(filepath): 
+def getFileList(filefolder): 
 	a = []
-	for root, dirs, files in os.walk(filepath):
+	for root, dirs, files in os.walk(filefolder):
 		for file in files:
 			if file.endswith(".mp3"):
 				a.append(os.path.join(root, file))
-	print(a) #unneccesary if returning, only used for checking files
+	#print(a) #unneccesary if returning, only used for checking files
 	return (a)
 
 #takes the full filepath (example: /home/bzachmann/Documents/test.mp3) 
@@ -65,14 +67,12 @@ def makeServerPath(filepath):
 	serverpath = os.path.join(fileStorageFolder, name)
 	return serverpath
 
-def makeLogPath(filepath):
-	filesplits = os.path.split(filepath)
-	path = filesplits[0]
-	logpath = os.path.join(path, "log.txt")
+def makeLogPath(filefolder):
+	logpath = os.path.join(filefolder, "log.txt")
 	return logpath
 
-def setupLogging(pathtoFile):
-	logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s', datefmt='%m-%d %H:%M', filename= makeLogPath(pathtoFile), filemode='w')
+def setupLogging(filefolder):
+	logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s', datefmt='%m-%d %H:%M', filename= makeLogPath(filefolder), filemode='w')
 	console = logging.StreamHandler()
 	console.setLevel(logging.INFO)
 
@@ -80,11 +80,6 @@ def setupLogging(pathtoFile):
 
 	console.setFormatter(formatter)
 	logging.getLogger('').addHandler(console)
-
-#################################################################################################
-
-
-
 
 
 ################################essentia_function_setup##########################################
@@ -135,27 +130,11 @@ def getTagInfo(filepath):
 
 
 
-#################################################################################################
-
-
-
-##################################### MAIN ######################################################
-
-
-
-if((len(sys.argv) < 3) or (len(sys.argv) > 3)):
-	print "Incorrect Number of Arguments.  Specify filepath to input .mp3 and filepath to output .txt"
-else:
-	#here we should check if the arguments are correct
-
-	#take the argument from command line and find the filepath
-	filepath = sys.argv[1]
-	textfilepath = sys.argv[2]
-
-
+###################################### analyze song #################################################
+def analyzeSong(filepath, textfilepath):
 
 	#setup the logging to put the log file in the same root folder that the .mp3 file is it
-	setupLogging(filepath)
+	
 	loggerSong = logging.getLogger(os.path.split(filepath)[1])
 	loggerSong.info("Logging Enabled")
 
@@ -186,5 +165,29 @@ else:
 	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4]]
 
 	appendToText(toFileList, textfilepath)
+
+
+##################################### EXECUTE ######################################################
+
+
+#check if the arguments are correct
+if((len(sys.argv) < 3) or (len(sys.argv) > 3)):
+	print "Incorrect Number of Arguments.  Specify filepath to input folder and filepath to output .txt"
+else:
+	#check if the directory is truely a directory
+	if (not(os.path.isdir(sys.argv[1]))):
+		print "invalid filepath to input files"
+	else:
+		#check if the output.txt is specified as a .txt
+		if(not(sys.argv[2].endswith(".txt"))):
+			print "output must be .txt"
+		else:
+			filelist = getFileList(sys.argv[1])
+			setupLogging(sys.argv[1])
+			for f in filelist:
+				analyzeSong(f, sys.argv[2])
+
+			#here is were we would finally upload the .txt doc
+
 
 
