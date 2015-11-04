@@ -89,7 +89,7 @@ def setupLogging(filefolder):
 #Input audio signal and returns the loudness
 def getLoudness(audioInput):
 	loudnessExtractor = essentia.standard.Loudness()
-	loudness = loudnessExtractor(audio)
+	loudness = loudnessExtractor(audioInput)
 	return loudness
 
 #Input audio signal
@@ -97,14 +97,14 @@ def getLoudness(audioInput):
 def getKey(audioInput):
 	keyExtractor = essentia.standard.KeyExtractor()
 	key = keyExtractor(audioInput)
-	return key
+	return key[0]
 #Input audio signal
 #returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
 #chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
-def getTone(audioInput):
-	tonalExtractor = essentia.standard.TonalExtractor()
-	tone = tonalExtractor(audio)
-	return tone
+#def getTone(audioInput):
+#	tonalExtractor = essentia.standard.TonalExtractor()
+#	tone = tonalExtractor(audioInput)
+#	return tone
 
 def getAudioVector(filepath):
 	loader = essentia.standard.MonoLoader(filename = filepath)
@@ -146,6 +146,9 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("done getting tag info")
 
 	#here we should check if all the metadata is in the list( not missing any)
+	for t in tags:
+		if (t == ""):
+			loggerSong.error(os.path.split(filepath)[1] + "is missing tag info. Excluding file from analysis and upload")
 
 	#change the name and update the filepath
 	loggerSong.info("changing the filename")
@@ -154,18 +157,38 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("renamed filename to " + os.path.split(filename)[1])
 
 	#get the audio vector of the .mp3 file
-	#audio = getAudioVector(filename)
+	loggerSong.info("generating audio vector")
+	audio = getAudioVector(filename)
+	loggerSong.info("done generating audio vector")
 
 	#get the bpm of the audio vector
-	#bpm = getBPM(audio)
+	loggerSong.info("calculating BPM")
+	bpm = getBPM(audio)
+	loggerSong.info("done calculating BPM")
+
+	#get the loudness of the audio vector
+	loggerSong.info("calculating loudness")
+	loudness = getLoudness(audio) 
+	loggerSong.info("done calculating loudness")
+
+	#get the key of the audio vector
+	loggerSong.info("calculating key")
+	key = getKey(audio)
+	loggerSong.info("done calculating key")
+	
+	#loggerSong.info("calculating tone")
+	#tone = getTone(audio)
+	#loggerSong.info("done calculating tone")
+
 	#for testing
 
 	serverPath = makeServerPath(filename)
 
-	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4]]
+	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key]
 
 	appendToText(toFileList, textfilepath)
 
+	#here we would upload the file to the server
 
 ##################################### EXECUTE ######################################################
 
