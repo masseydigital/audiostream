@@ -134,6 +134,12 @@ def bassCalculator(audioInput):
 	return total
 
 
+#dancability returns a value based on a crazy algorithm that will be between 1 and 3
+	#optional scale of dance=dance*3.33 for a 1-10 scale
+def Dance(audioInput):
+	DanceAbility = essentia.standard.Danceability()
+	dance = DanceAbility(audio)
+	return dance
 
 
 
