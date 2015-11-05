@@ -97,14 +97,14 @@ def getLoudness(audioInput):
 def getKey(audioInput):
 	keyExtractor = essentia.standard.KeyExtractor()
 	key = keyExtractor(audioInput)
-	return key[0]
-#Input audio signal
-#returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
-#chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
-#def getTone(audioInput):
-#	tonalExtractor = essentia.standard.TonalExtractor()
-#	tone = tonalExtractor(audioInput)
-#	return tone
+	return key
+Input audio signal
+returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
+chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
+def getTone(audioInput):
+	tonalExtractor = essentia.standard.TonalExtractor()
+	tone = tonalExtractor(audioInput)
+	return tone
 
 def getAudioVector(filepath):
 	loader = essentia.standard.MonoLoader(filename = filepath)
@@ -136,9 +136,9 @@ def bassCalculator(audioInput):
 
 #dancability returns a value based on a crazy algorithm that will be between 1 and 3
 	#optional scale of dance=dance*3.33 for a 1-10 scale
-def Dance(audioInput):
+def getDanceability(audioInput):
 	DanceAbility = essentia.standard.Danceability()
-	dance = DanceAbility(audio)
+	dance = DanceAbility(audioInput)
 	return dance
 
 
@@ -186,13 +186,28 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("done calculating loudness")
 
 	#get the key of the audio vector
-	loggerSong.info("calculating key")
-	key = getKey(audio)
-	loggerSong.info("done calculating key")
+	loggerSong.info("calculating key information")
+	keyinfo = getKey(audio)
+	key = keyinfo[0]
+	scale = keyinfo[1]
+	loggerSong.info("done calculating key information")
 	
-	#loggerSong.info("calculating tone")
-	#tone = getTone(audio)
-	#loggerSong.info("done calculating tone")
+	loggerSong.info("calculating tone information")
+	toneinfo = getTone(audio)
+	chordsKey = toneinfo[2]
+	chordsChangesRate[0]
+	chordsNumberRate[3]
+	loggerSong.info("done calculating tone information")
+
+	#get the danceability
+	LoggerSong.info("calculating the danceability... yeah seriously!")
+	danceability = getDanceability(audio)
+	LoggerSong.info("done calculating the danceability")
+
+	#calculate the amount of bass
+	LoggerSong.info("calculating the amuont of bass")
+	bassiness = baseCalculator(audio)
+	LoggerSong.info("done calculatingt the amount of bass")
 
 	#for testing
 
