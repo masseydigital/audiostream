@@ -98,9 +98,9 @@ def getKey(audioInput):
 	keyExtractor = essentia.standard.KeyExtractor()
 	key = keyExtractor(audioInput)
 	return key
-Input audio signal
-returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
-chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
+#Input audio signal
+#returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
+#chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
 def getTone(audioInput):
 	tonalExtractor = essentia.standard.TonalExtractor()
 	tone = tonalExtractor(audioInput)
@@ -129,6 +129,7 @@ def getTagInfo(filepath):
 def bassCalculator(audioInput):
 	bassExtractor = essentia.standard.BarkBands()
 	bass = bassExtractor(audioInput)
+	total = 0;
 	for i in range(0,3):
 		total += bass[i]
 	return total
@@ -195,25 +196,25 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("calculating tone information")
 	toneinfo = getTone(audio)
 	chordsKey = toneinfo[2]
-	chordsChangesRate[0]
-	chordsNumberRate[3]
+	chordsChangesRate = toneinfo[0]
+	chordsNumberRate = toneinfo[3]
 	loggerSong.info("done calculating tone information")
 
 	#get the danceability
-	LoggerSong.info("calculating the danceability... yeah seriously!")
+	loggerSong.info("calculating the danceability... yeah seriously!")
 	danceability = getDanceability(audio)
-	LoggerSong.info("done calculating the danceability")
+	loggerSong.info("done calculating the danceability")
 
 	#calculate the amount of bass
-	LoggerSong.info("calculating the amuont of bass")
-	bassiness = baseCalculator(audio)
-	LoggerSong.info("done calculatingt the amount of bass")
+	loggerSong.info("calculating the amuont of bass")
+	bassiness = bassCalculator(audio)
+	loggerSong.info("done calculatingt the amount of bass")
 
 	#for testing
 
 	serverPath = makeServerPath(filename)
 
-	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key]
+	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key, scale, chordsKey, chordsChangesRate, chordsNumberRate, danceability, bassiness]
 
 	appendToText(toFileList, textfilepath)
 
