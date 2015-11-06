@@ -3,10 +3,11 @@ import essentia.standard
 import os
 import sys
 import logging
-
+import pysftp
 #########################################constant variables######################################
 
-fileStorageFolder = "server/"
+#fileStorageFolder = "server/"
+fileStorageFolder = "/home/audioanalysis/SongUpload/Song"
 
 
 ##########################################functions###############################################
@@ -219,7 +220,9 @@ def analyzeSong(filepath, textfilepath):
 	appendToText(toFileList, textfilepath)
 
 	#here we would upload the file to the server
-
+	#im not 100% sure about these paths
+	srv.put(localpath = filepath, remotepath = serverPath)
+	
 ##################################### EXECUTE ######################################################
 
 
@@ -235,12 +238,18 @@ else:
 		if(not(sys.argv[2].endswith(".txt"))):
 			print "output must be .txt"
 		else:
+			#connect to server via sftp
+			srv = pysftp.Connection(host="134.129.125.114", username = "audioanalysis", password = "csci413aa")
 			filelist = getFileList(sys.argv[1])
 			setupLogging(sys.argv[1])
 			for f in filelist:
 				analyzeSong(f, sys.argv[2])
 
 			#here is were we would finally upload the .txt doc
+			#im not 100% sure what the path will be for the text doc
+			#will overwrite any existing files with this name
+			srv.put(localpath = textfilepath, remotepath ="/home/audioanalysis/SongUpload/Information/output.txt")
+			srv.close()
 
 
 
