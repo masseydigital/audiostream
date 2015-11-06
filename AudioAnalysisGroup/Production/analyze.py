@@ -7,7 +7,7 @@ import pysftp
 #########################################constant variables######################################
 
 #fileStorageFolder = "server/"
-fileStorageFolder = "/home/audioanalysis/SongUpload/Song"
+fileStorageFolder = "/SongUpload/Songs"
 
 
 ##########################################functions###############################################
@@ -165,12 +165,17 @@ def analyzeSong(filepath, textfilepath):
 	for t in tags:
 		if (t == ""):
 			loggerSong.error(os.path.split(filepath)[1] + "is missing tag info. Excluding file from analysis and upload")
+			return
 
 	#change the name and update the filepath
 	loggerSong.info("changing the filename")
 	filename = changeName(filepath, tags[0], tags[1], tags[2])
 	loggerSong = logging.getLogger(os.path.split(filename)[1]) #changes the name of the logger so that it has the new .mp3 name
 	loggerSong.info("renamed filename to " + os.path.split(filename)[1])
+
+
+	#here we should check if the file already exists in the server.  If yes.  Return to cancel anaylsis and upload
+
 
 	#get the audio vector of the .mp3 file
 	loggerSong.info("generating audio vector")
@@ -248,7 +253,7 @@ else:
 			#here is were we would finally upload the .txt doc
 			#im not 100% sure what the path will be for the text doc
 			#will overwrite any existing files with this name
-			srv.put(localpath = textfilepath, remotepath ="/home/audioanalysis/SongUpload/Information/output.txt")
+			srv.put(localpath = sys.argv[2], remotepath ="/SongUpload/Information/output.txt")
 			srv.close()
 
 
