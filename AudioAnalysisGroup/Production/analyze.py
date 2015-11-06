@@ -125,6 +125,14 @@ def getTagInfo(filepath):
 
 	return a;
 
+# experimental, this function computes the energy from between frequency 0 to 150hz
+def bassCalculator(audioInput):
+	bassExtractor = essentia.standard.BarkBands()
+	bass = bassExtractor(audioInput)
+	for i in range(0,3):
+		total += bass[i]
+	return total
+
 
 
 
