@@ -4,6 +4,8 @@ import os
 import sys
 import logging
 import pysftp
+import datetime
+
 #########################################constant variables######################################
 
 #fileStorageFolder = "server/"
@@ -81,6 +83,7 @@ def setupLogging(filefolder):
 
 	console.setFormatter(formatter)
 	logging.getLogger('').addHandler(console)
+
 
 
 ################################essentia_function_setup##########################################
@@ -214,7 +217,7 @@ def analyzeSong(filepath, textfilepath):
 	#calculate the amount of bass
 	loggerSong.info("calculating the amuont of bass")
 	bassiness = bassCalculator(audio)
-	loggerSong.info("done calculatingt the amount of bass")
+	loggerSong.info("done calculating the amount of bass")
 
 	#for testing
 
@@ -226,13 +229,15 @@ def analyzeSong(filepath, textfilepath):
 
 	#here we would upload the file to the server
 	#im not 100% sure about these paths
+	loggerSong.info("uploading song to file storage server")
 	srv.put(localpath = filepath, remotepath = serverPath)
+	loggerSong.info("done uploading song")
 	
 ##################################### EXECUTE ######################################################
 
 
 #check if the arguments are correct
-if((len(sys.argv) < 3) or (len(sys.argv) > 3)):
+if((len(sys.argv) < 2) or (len(sys.argv) > 2)):
 	print "Incorrect Number of Arguments.  Specify filepath to input folder and filepath to output .txt"
 else:
 	#check if the directory is truely a directory
@@ -240,21 +245,25 @@ else:
 		print "invalid filepath to input files"
 	else:
 		#check if the output.txt is specified as a .txt
-		if(not(sys.argv[2].endswith(".txt"))):
-			print "output must be .txt"
-		else:
-			#connect to server via sftp
-			srv = pysftp.Connection(host="134.129.125.114", username = "audioanalysis", password = "csci413aa")
-			filelist = getFileList(sys.argv[1])
-			setupLogging(sys.argv[1])
-			for f in filelist:
-				analyzeSong(f, sys.argv[2])
+		time = datetime.datetime.now();
+		subfolder = sys.argv[1] + "analyze_" + str(time.month) + "-"+ str(time.day) + "-" + str(time.year) + "--" + str(time.hour) + "-" + str(time.minute) + "-" + str(time.second)
+		os.mkdir(subfolder, 0777)
+		subfolder = subfolder + "/"
+		textname = "output_" + str(time.month) + "-"+ str(time.day) + "-" + str(time.year) + "--" + str(time.hour) + "-" + str(time.minute) + "-" + str(time.second) + ".txt"
+		textfilepath = os.path.join(subfolder, textname)
 
-			#here is were we would finally upload the .txt doc
-			#im not 100% sure what the path will be for the text doc
-			#will overwrite any existing files with this name
-			srv.put(localpath = sys.argv[2], remotepath ="/SongUpload/Information/output.txt")
-			srv.close()
+		#connect to server via sftp
+		srv = pysftp.Connection(host="134.129.125.114", username = "audioanalysis", password = "csci413aa")
+		filelist = getFileList(sys.argv[1])
+		setupLogging(subfolder)
+		for f in filelist:
+			analyzeSong(f, textfilepath)
+
+		#here is were we would finally upload the .txt doc
+		#im not 100% sure what the path will be for the text doc
+		#will overwrite any existing files with this name
+		srv.put(localpath = textfilepath, remotepath ="/SongUpload/Information/" + textname)
+		srv.close()
 
 
 
