@@ -164,6 +164,7 @@ def getMaxMagFreq(audioInput):
 
 
 ###################################### analyze song #################################################
+#returns the outcome of analysis (success or failure)y
 def analyzeSong(filepath, textfilepath):
 
 	#setup the logging to put the log file in the same root folder that the .mp3 file is it
@@ -180,7 +181,7 @@ def analyzeSong(filepath, textfilepath):
 	for t in tags:
 		if (t == ""):
 			loggerSong.error(os.path.split(filepath)[1] + "is missing tag info. Excluding file from analysis and upload")
-			return
+			return os.path.split(filepath)[1] + " - Failure - missing tag info"
 
 	#change the name and update the filepath
 	loggerSong.info("changing the filename")
@@ -193,7 +194,7 @@ def analyzeSong(filepath, textfilepath):
 	serverPath = makeServerPath(filename)
 	if srv.exists(serverPath):
 		loggerSong.error("file already exists on server... Excluding file from analysis and upload")
-		return
+		return filebasename + " - Failure - file already exists on server"
 
 	#here we should check if the file already exists in the server.  If yes.  Return to cancel anaylsis and upload
 
@@ -265,6 +266,7 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("uploading song to file storage server")
 	srv.put(localpath = filepath, remotepath = serverPath)
 	loggerSong.info("done uploading song")
+	return filebasename + " - Success"
 	
 ##################################### EXECUTE ######################################################
 
@@ -289,9 +291,10 @@ else:
 		srv = pysftp.Connection(host="134.129.125.114", username = "audioanalysis", password = "csci413aa")
 		filelist = getFileList(sys.argv[1])
 		setupLogging(subfolderpath)
+		outcomesList = []
 		for f in filelist:
-			analyzeSong(f, textfilepath)
-
+			outcome = analyzeSong(f, textfilepath)
+			outcomesList.append(outcome)
 		#here is were we would finally upload the .txt doc
 		#im not 100% sure what the path will be for the text doc
 		#will overwrite any existing files with this name
@@ -306,4 +309,8 @@ else:
 			logging.info("No information to Upload")
 			
 		srv.close()
+		print "\n\nRESULTS:"
+		for r in outcomesList:
+			print r
+		print "\n\n"
 		logging.info("Done with Analysis and Upload :)")
