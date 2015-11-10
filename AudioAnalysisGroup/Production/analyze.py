@@ -28,7 +28,7 @@ def getFileList(filefolder):
 #takes the full filepath (example: /home/bzachmann/Documents/test.mp3) 
 #and some meta data to format a new filename and rename the file in the filepath
 #the function returns the new filepath
-def changeName(filepath, title, artist, album):
+def getNewFileName(filepath, title, artist, album):
 	titlelow = title.lower()
 	titlefinal = titlelow.replace(" ", "-")
 	artistlow = artist.lower()
@@ -52,7 +52,6 @@ def changeName(filepath, title, artist, album):
 	path = filesplits[0]
 	
 	newfilepath = os.path.join(path, newname)
-	os.rename(filepath, newfilepath)
 	return newfilepath
 
 #Inputs an array value and a path and will append to that text file path
@@ -172,9 +171,7 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong = logging.getLogger(os.path.split(filepath)[1])
 	loggerSong.info("Logging Enabled")
 
-	#here we should check if the file really exists(use os. methods)
-	#and if it is a .mp3
-
+	#get the tag info from the file
 	loggerSong.info("getting tag info")
 	tags = getTagInfo(filepath)
 	loggerSong.info("done getting tag info")
@@ -187,10 +184,16 @@ def analyzeSong(filepath, textfilepath):
 
 	#change the name and update the filepath
 	loggerSong.info("changing the filename")
-	filename = changeName(filepath, tags[0], tags[1], tags[2])
-	loggerSong = logging.getLogger(os.path.split(filename)[1]) #changes the name of the logger so that it has the new .mp3 name
+	filename = getNewFileName(filepath, tags[0], tags[1], tags[2])
+	os.rename(filepath, filename)
+	filebasename = os.path.split(filename)[1]
+	loggerSong = logging.getLogger(filebasename) #changes the name of the logger so that it has the new .mp3 name
 	loggerSong.info("renamed filename to " + os.path.split(filename)[1])
 
+	serverPath = makeServerPath(filename)
+	if srv.exists(serverPath):
+		loggerSong.error("file already exists on server... Excluding file from analysis and upload")
+		return
 
 	#here we should check if the file already exists in the server.  If yes.  Return to cancel anaylsis and upload
 
@@ -251,7 +254,7 @@ def analyzeSong(filepath, textfilepath):
 
 	#for testing
 
-	serverPath = makeServerPath(filename)
+	
 
 	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key, scale, chordsKey, chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossRate]
 
@@ -292,8 +295,15 @@ else:
 		#here is were we would finally upload the .txt doc
 		#im not 100% sure what the path will be for the text doc
 		#will overwrite any existing files with this name
-		srv.put(localpath = textfilepath, remotepath ="/SongUpload/Information/" + textname)
+
+		#need to add a check to make sure the file exists before upload (for cases when all files are excluded from upload becuase of missing tag info or file already exists on server)
+		serverTextPath = os.path.join("/SongUpload/Information/", textname)
+		if os.path.isfile(textfilepath):
+			logging.info("Uploading" + textname)
+			srv.put(localpath = textfilepath, remotepath = serverTextPath)
+			logging.info("Done Uploading")
+		else:
+			logging.info("No information to Upload")
+			
 		srv.close()
-
-
-
+		logging.info("Done with Analysis and Upload :)")
