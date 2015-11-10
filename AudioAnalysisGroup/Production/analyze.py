@@ -246,16 +246,16 @@ else:
 	else:
 		#check if the output.txt is specified as a .txt
 		time = datetime.datetime.now();
-		subfolder = sys.argv[1] + "analyze_" + str(time.month) + "-"+ str(time.day) + "-" + str(time.year) + "--" + str(time.hour) + "-" + str(time.minute) + "-" + str(time.second)
-		os.mkdir(subfolder, 0777)
-		subfolder = subfolder + "/"
+		subfoldername = "analyze_" + str(time.month) + "-"+ str(time.day) + "-" + str(time.year) + "--" + str(time.hour) + "-" + str(time.minute) + "-" + str(time.second)
+		subfolderpath = os.path.join(sys.argv[1], subfoldername)
+		os.mkdir(subfolderpath, 0777)
 		textname = "output_" + str(time.month) + "-"+ str(time.day) + "-" + str(time.year) + "--" + str(time.hour) + "-" + str(time.minute) + "-" + str(time.second) + ".txt"
-		textfilepath = os.path.join(subfolder, textname)
+		textfilepath = os.path.join(subfolderpath, textname)
 
 		#connect to server via sftp
 		srv = pysftp.Connection(host="134.129.125.114", username = "audioanalysis", password = "csci413aa")
 		filelist = getFileList(sys.argv[1])
-		setupLogging(subfolder)
+		setupLogging(subfolderpath)
 		for f in filelist:
 			analyzeSong(f, textfilepath)
 
