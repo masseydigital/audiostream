@@ -146,6 +146,20 @@ def getDanceability(audioInput):
 	dance = DanceAbility(audioInput)
 	return dance
 
+#returns dynamicComplexity and loudness
+def getDynamicComplexity(audioInput):
+	DynamicComplexity = essentia.standard.DynamicComplexity()
+	return DynamicComplexity(audioInput)
+
+#returns zeroCrossingRate
+def getZeroCrossingRate(audioInput):
+	ZeroCrossingRate = essentia.standard.ZeroCrossingRate()
+	return ZeroCrossingRate(audioInput)
+
+#returns maxMagFreq
+def getMaxMagFreq(audioInput):
+	MaxMagFreq = essentia.standard.MaxMagFreq()
+	return MaxMagFreq(audioInput)
 
 
 
@@ -215,9 +229,24 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("done calculating the danceability")
 
 	#calculate the amount of bass
-	loggerSong.info("calculating the amuont of bass")
+	loggerSong.info("calculating the amount of bass")
 	bassiness = bassCalculator(audio)
 	loggerSong.info("done calculating the amount of bass")
+
+	#calculate the dynamic complexity
+	loggerSong.info("calculating the dynamic complexity")
+	dynamicComplexity = getDynamicComplexity(audio)
+	loggerSong.info("done calculating the dynamic complexity")
+
+	#calculate the zero crossing rate
+	loggerSong.info("calculating the zero crossing rate")
+	dynamicComplexity = getZeroCrossingRate(audio)
+	loggerSong.info("done calculating the zero crossing rate")
+
+	#calculate the max mag freq
+	loggerSong.info("calculating the max mag freq")
+	dynamicComplexity = getMaxMagFreq(audio)
+	loggerSong.info("done calculating the max mag freq")
 
 	#for testing
 
