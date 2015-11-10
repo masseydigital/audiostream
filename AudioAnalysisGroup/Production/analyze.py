@@ -161,6 +161,12 @@ def getMaxMagFreq(audioInput):
 	MaxMagFreq = essentia.standard.MaxMagFreq()
 	return MaxMagFreq(audioInput)
 
+# returns the intensity(possibly unreliable) relaxed (-1), moderate (0), or aggressive (1)
+def intensityCalc(audioInput):
+	intensityExtractor = essentia.standard.Intensity()
+	intens = intensityExtractor(audioInput)
+	return intens
+
 
 
 ###################################### analyze song #################################################
