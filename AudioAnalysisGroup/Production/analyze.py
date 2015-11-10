@@ -149,7 +149,8 @@ def getDanceability(audioInput):
 #returns dynamicComplexity and loudness
 def getDynamicComplexity(audioInput):
 	DynamicComplexity = essentia.standard.DynamicComplexity()
-	return DynamicComplexity(audioInput)
+	dcomplex = DynamicComplexity(audioInput)
+	return dcomplex[1]
 
 #returns zeroCrossingRate
 def getZeroCrossingRate(audioInput):
@@ -240,19 +241,19 @@ def analyzeSong(filepath, textfilepath):
 
 	#calculate the zero crossing rate
 	loggerSong.info("calculating the zero crossing rate")
-	dynamicComplexity = getZeroCrossingRate(audio)
+	zeroCrossRate = getZeroCrossingRate(audio)
 	loggerSong.info("done calculating the zero crossing rate")
 
 	#calculate the max mag freq
-	loggerSong.info("calculating the max mag freq")
-	dynamicComplexity = getMaxMagFreq(audio)
-	loggerSong.info("done calculating the max mag freq")
+	#loggerSong.info("calculating the max mag freq")
+	#maxMagFreq = getMaxMagFreq(audio)
+	#loggerSong.info("done calculating the max mag freq")
 
 	#for testing
 
 	serverPath = makeServerPath(filename)
 
-	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key, scale, chordsKey, chordsChangesRate, chordsNumberRate, danceability, bassiness]
+	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key, scale, chordsKey, chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossRate]
 
 	appendToText(toFileList, textfilepath)
 
