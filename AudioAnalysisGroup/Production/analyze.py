@@ -264,7 +264,7 @@ def analyzeSong(filepath, textfilepath):
 	#here we would upload the file to the server
 	#im not 100% sure about these paths
 	loggerSong.info("uploading song to file storage server")
-	srv.put(localpath = filepath, remotepath = serverPath)
+	srv.put(localpath = filename, remotepath = serverPath)
 	loggerSong.info("done uploading song")
 	return filebasename + " - Success"
 	
