@@ -119,12 +119,12 @@ def getBPM(audioInput):
 	bpmvalues = bpmextractor(audioInput)
 	return bpmvalues[0]
 
-#return values will be 0=title, 1=Artist, 2=Ablum, 3=Genre, 4=Duration
+#return values will be 0=title, 1=Artist, 2=Ablum, 3=Year, 4=Genre, 5=Duration
 def getTagInfo(filepath):
 
 	reader = essentia.standard.MetadataReader(filename = filepath)
 	metadata = reader()
-	a = (metadata[0], metadata[1], metadata[2], metadata[4], metadata[8])
+	a = (metadata[0], metadata[1], metadata[2], metadata[6], metadata[4], metadata[8])
 
 	return a;
 
@@ -156,13 +156,9 @@ def getZeroCrossingRate(audioInput):
 	ZeroCrossingRate = essentia.standard.ZeroCrossingRate()
 	return ZeroCrossingRate(audioInput)
 
-#returns maxMagFreq
-def getMaxMagFreq(audioInput):
-	MaxMagFreq = essentia.standard.MaxMagFreq()
-	return MaxMagFreq(audioInput)
 
 # returns the intensity(possibly unreliable) relaxed (-1), moderate (0), or aggressive (1)
-def intensityCalc(audioInput):
+def getIntensity(audioInput):
 	intensityExtractor = essentia.standard.Intensity()
 	intens = intensityExtractor(audioInput)
 	return intens
@@ -230,6 +226,7 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong.info("calculating tone information")
 	toneinfo = getTone(audio)
 	chordsKey = toneinfo[2]
+	chordsScale = toneinfo[5]
 	chordsChangesRate = toneinfo[0]
 	chordsNumberRate = toneinfo[3]
 	loggerSong.info("done calculating tone information")
@@ -254,16 +251,16 @@ def analyzeSong(filepath, textfilepath):
 	zeroCrossRate = getZeroCrossingRate(audio)
 	loggerSong.info("done calculating the zero crossing rate")
 
-	#calculate the max mag freq
-	#loggerSong.info("calculating the max mag freq")
-	#maxMagFreq = getMaxMagFreq(audio)
-	#loggerSong.info("done calculating the max mag freq")
+	#calculate the intensity
+	loggerSong.info("calculating the intensity")
+	intensity = getIntensity(audio)
+	loggerSong.info("done calculating the intensity")
 
 	#for testing
 
 	
 
-	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], bpm, loudness, key, scale, chordsKey, chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossRate]
+	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], tags[5], bpm, loudness, key, scale, chordsKey, chordsScale, chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossRate, intensity]
 
 	appendToText(toFileList, textfilepath)
 
