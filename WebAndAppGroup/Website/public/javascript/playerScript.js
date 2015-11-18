@@ -1,50 +1,100 @@
+//playerScript.js
+//Responsible for all js audio player communication on the index page
 var audioElement = document.createElement('player');
-      var playing = false;
-      var looping = false;
-      //Volume
-      function isKeyPressed(event) {
-      console.log("Key Pressed");
-      if (event.keyCode == 45) {
-        document.getElementById('player').volume-=0.1;
-      } else if(event.keyCode == 43 || event.keyCode == 61) {
-       document.getElementById('player').volume+=0.1;
-      }
-    }
+var song = document.getElementById('song'); //Audio tag
+//var songSource = document.getElementById('songSource'); //Source tag inside the audio tag
 
-  var activeSong;
+var playing = false;
+var looping = false;
+var activeSong;
+
+var init = false; //Determines if the play button has been pressed at least once
+
+//Used to hold active song info, is updated from eventual database
+//songObject = {id,source,title,artist,length};
+
+//Debug song destination array
+var songSrc = ['somethings-gotta-give_all-time-low_future-hearts.mp3','break-your-little-heart_all-time-low_nothing-personal.mp3', 'the-anthem_good-charlotte_the-young-and-the-hopeless.mp3'];
+var currentSongSrc = 0;
+currentSongDir = "testAudio/" + songSrc[currentSongSrc];
+
+
+
+function nextSong() {
+
+  if(currentSongSrc + 1 < songSrc.length) {
+    currentSongSrc++;
+    currentSongDir = "testAudio/" + songSrc[currentSongSrc];
+    activeSong.src = currentSongDir;
+    activeSong.load();
+    activeSong.play('song');
+    if(song.paused) {
+      document.getElementById('playPauseButton').className = 'fa fa-pause';
+    }
+  } else {
+    alert("No More Songs!");
+  }
+}
+
+function restartSong() {
+  document.getElementById('song').currentTime='0';
+
+}
+
+//Volume
+function isKeyPressed(event) {
+  if (event.keyCode == 45) {
+    document.getElementById('player').volume-=0.1;
+  } else if(event.keyCode == 43 || event.keyCode == 61) {
+    document.getElementById('player').volume+=0.1;
+  }
+}
 
 function play(id){
     activeSong = document.getElementById(id);
     activeSong.play();
     var percentageOfVolume = activeSong.volume / 1;
-    var percentageOfVolumeMeter = document.getElementById('volumeMeter').offsetHeight * percentageOfVolume;
-    
+    var percentageOfVolumeMeter = document.getElementById('volumeMeter').offsetHeight * percentageOfVolume;    
     //Fills out the volume status bar.
     document.getElementById('volumeStatus').style.height = Math.round(percentageOfVolumeSlider) + "px";
+    document.getElementById('playPauseButton').className = 'fa fa-pause';
 }
+
 //Pauses the active song.
-function pause(){
+function pause() {
     activeSong.pause();
+    
 }
+
 //Does a switch of the play/pause with one button.
-function playPause(id){
+function playPause(id) {
     //Sets the active song since one of the functions could be play.
     activeSong = document.getElementById(id);
+
+    if(!init) {
+      activeSong.src = currentSongDir;
+      activeSong.load();
+      init = true;
+    }
+
+     document.getElementById('playPauseButton').className = 'fa fa-pause';
     //Checks to see if the song is paused, if it is, play it from where it left off otherwise pause it.
-    if (activeSong.paused){
+    if (activeSong.paused) {
+         document.getElementById('playPauseButton').className = 'fa fa-pause';
          activeSong.play();
          document.getElementById("songPlayPause").innerHTML = "||";
-         document.getElementById("songPlayPause").setAttribute("class", "playing");
-    }else{
+    } else {
+         document.getElementById('playPauseButton').className = 'fa fa-play';
          activeSong.pause();
          document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
          document.getElementById("songPlayPause").setAttribute("class", "");
-    }
+        }
 }
 
 //Updates the current time function so it reflects where the user is in the song.
 //This function is called whenever the time is updated.  This keeps the visual in sync with the actual time.
-function updateTime(){
+function updateTime() {  
+
     var currentSeconds = (Math.floor(activeSong.currentTime % 60) < 10 ? '0' : '') + Math.floor(activeSong.currentTime % 60);
     var currentMinutes = Math.floor(activeSong.currentTime / 60);
     //Sets the current song location compared to the song duration.
@@ -63,9 +113,20 @@ function updateTime(){
     if(document.getElementById("songTimeA").innerHTML == document.getElementById("songTimeB").innerHTML){
       document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
       document.getElementById("songPlayPause").setAttribute("class", "");
-    };
-    
+    };  
 }
+
+function updatePlaylist() {
+    $("#song").bind('ended', function(){
+    
+    activeSong.currentTime = 0;
+    nextSong();
+    play(song);
+});
+}
+
+
+
 function volumeUpdate(number){
     //Updates the volume of the track to a certain number.
     activeSong.volume = number / 100;

@@ -26,7 +26,7 @@ function handle_database(req, res) {
         }   
 
         console.log('connected as id ' + connection.threadId);
-		
+        
 		connection.query("select * from test",function(err,rows){
             //connection.release();
             if(!err) {
@@ -37,10 +37,11 @@ function handle_database(req, res) {
   });
 }
 
-console.log("Test text");
+console.log("Grabbing public resources...");
 //Where html documents grab stuff for the site
 app.use(express.static('public'));
 
+console.log("Adding view directories...");
 //Defining url directories
 //Default Directory
 app.get('/', function(req, res) {
@@ -58,5 +59,5 @@ app.get('/playerDebug', function(req, res) {
 });
 
 app.listen(port);
-console.log(colors.magenta('Audio site listening on port ' + port));
+console.log(colors.magenta('Success! Audio site listening on port ' + port));
 

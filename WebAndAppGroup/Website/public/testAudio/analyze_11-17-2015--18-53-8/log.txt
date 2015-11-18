@@ -1,0 +1,296 @@
+11-17 18:53 Break Your Little Heart - All Time Low (with lyrics).mp3 INFO     Logging Enabled
+11-17 18:53 Break Your Little Heart - All Time Low (with lyrics).mp3 INFO     getting tag info
+11-17 18:53 Break Your Little Heart - All Time Low (with lyrics).mp3 INFO     done getting tag info
+11-17 18:53 Break Your Little Heart - All Time Low (with lyrics).mp3 INFO     changing the filename
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     renamed filename to break-your-little-heart_all-time-low_nothing-personal.mp3
+11-17 18:53 paramiko.transport DEBUG    [chan 0] Max packet in: 32768 bytes
+11-17 18:53 paramiko.transport DEBUG    [chan 0] Max packet out: 32768 bytes
+11-17 18:53 paramiko.transport DEBUG    Secsh channel 0 opened.
+11-17 18:53 paramiko.transport DEBUG    [chan 0] Sesch channel 0 request ok
+11-17 18:53 paramiko.transport.sftp INFO     [chan 0] Opened sftp connection (server version 3)
+11-17 18:53 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/break-your-little-heart_all-time-low_nothing-personal.mp3')
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     generating audio vector
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done generating audio vector
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating BPM
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating BPM
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating loudness
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating loudness
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating key information
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating key information
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating tone information
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating tone information
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating the danceability
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating the amount of bass
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating the amount of bass
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating the dynamic complexity
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating the dynamic complexity
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating the zero crossing rate
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating the zero crossing rate
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     calculating the intensity
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done calculating the intensity
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     uploading song to file storage server
+11-17 18:53 break-your-little-heart_all-time-low_nothing-personal.mp3 INFO     done uploading song
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     Logging Enabled
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     getting tag info
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done getting tag info
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     changing the filename
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     renamed filename to the-anthem_good-charlotte_the-young-and-the-hopeless.mp3
+11-17 18:53 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/the-anthem_good-charlotte_the-young-and-the-hopeless.mp3')
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     generating audio vector
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done generating audio vector
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating BPM
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating BPM
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating loudness
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating loudness
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating key information
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating key information
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating tone information
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating tone information
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the danceability
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the amount of bass
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the amount of bass
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the dynamic complexity
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the dynamic complexity
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the zero crossing rate
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the zero crossing rate
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the intensity
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the intensity
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     uploading song to file storage server
+11-17 18:53 the-anthem_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done uploading song
+11-17 18:53 My Chemical Romance - Welcome to the Black Parade.mp3 INFO     Logging Enabled
+11-17 18:53 My Chemical Romance - Welcome to the Black Parade.mp3 INFO     getting tag info
+11-17 18:53 My Chemical Romance - Welcome to the Black Parade.mp3 INFO     done getting tag info
+11-17 18:53 My Chemical Romance - Welcome to the Black Parade.mp3 INFO     changing the filename
+11-17 18:53 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     renamed filename to welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3
+11-17 18:53 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3')
+11-17 18:53 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     generating audio vector
+11-17 18:53 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done generating audio vector
+11-17 18:53 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating BPM
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating BPM
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating loudness
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating loudness
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating key information
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating key information
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating tone information
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating tone information
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the danceability
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating the amount of bass
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the amount of bass
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating the dynamic complexity
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the dynamic complexity
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating the zero crossing rate
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the zero crossing rate
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     calculating the intensity
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the intensity
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     uploading song to file storage server
+11-17 18:54 welcome-to-the-black-parade_my-chemical-romance_the-black-parade.mp3 INFO     done uploading song
+11-17 18:54 B.o.B - So Good [Official Video].mp3 INFO     Logging Enabled
+11-17 18:54 B.o.B - So Good [Official Video].mp3 INFO     getting tag info
+11-17 18:54 B.o.B - So Good [Official Video].mp3 INFO     done getting tag info
+11-17 18:54 B.o.B - So Good [Official Video].mp3 INFO     changing the filename
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     renamed filename to so-good_bob_strange-clouds.mp3
+11-17 18:54 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/so-good_bob_strange-clouds.mp3')
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     generating audio vector
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done generating audio vector
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating BPM
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating BPM
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating loudness
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating loudness
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating key information
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating key information
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating tone information
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating tone information
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating the danceability
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating the amount of bass
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating the amount of bass
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating the dynamic complexity
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating the dynamic complexity
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating the zero crossing rate
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating the zero crossing rate
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     calculating the intensity
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done calculating the intensity
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     uploading song to file storage server
+11-17 18:54 so-good_bob_strange-clouds.mp3 INFO     done uploading song
+11-17 18:54 All Time Low - Dear Maria, Count Me In (Official Music Video).mp3 INFO     Logging Enabled
+11-17 18:54 All Time Low - Dear Maria, Count Me In (Official Music Video).mp3 INFO     getting tag info
+11-17 18:54 All Time Low - Dear Maria, Count Me In (Official Music Video).mp3 INFO     done getting tag info
+11-17 18:54 All Time Low - Dear Maria, Count Me In (Official Music Video).mp3 INFO     changing the filename
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     renamed filename to dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3
+11-17 18:54 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3')
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     generating audio vector
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done generating audio vector
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating BPM
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating BPM
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating loudness
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating loudness
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating key information
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating key information
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating tone information
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating tone information
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating the danceability
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating the amount of bass
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating the amount of bass
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating the dynamic complexity
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating the dynamic complexity
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating the zero crossing rate
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating the zero crossing rate
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     calculating the intensity
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done calculating the intensity
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     uploading song to file storage server
+11-17 18:54 dear-maria-count-me-in_all-time-low_so-wrong-its-right.mp3 INFO     done uploading song
+11-17 18:54 All Time Low - Something's Gotta Give (Official Music Video).mp3 INFO     Logging Enabled
+11-17 18:54 All Time Low - Something's Gotta Give (Official Music Video).mp3 INFO     getting tag info
+11-17 18:54 All Time Low - Something's Gotta Give (Official Music Video).mp3 INFO     done getting tag info
+11-17 18:54 All Time Low - Something's Gotta Give (Official Music Video).mp3 INFO     changing the filename
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     renamed filename to somethings-gotta-give_all-time-low_future-hearts.mp3
+11-17 18:54 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/somethings-gotta-give_all-time-low_future-hearts.mp3')
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     generating audio vector
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done generating audio vector
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating BPM
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating BPM
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating loudness
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating loudness
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating key information
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating key information
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating tone information
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating tone information
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating the danceability
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating the amount of bass
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating the amount of bass
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating the dynamic complexity
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating the dynamic complexity
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating the zero crossing rate
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating the zero crossing rate
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     calculating the intensity
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done calculating the intensity
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     uploading song to file storage server
+11-17 18:54 somethings-gotta-give_all-time-low_future-hearts.mp3 INFO     done uploading song
+11-17 18:54 Teenagers - My Chemical Romance (lyrics).mp3 INFO     Logging Enabled
+11-17 18:54 Teenagers - My Chemical Romance (lyrics).mp3 INFO     getting tag info
+11-17 18:54 Teenagers - My Chemical Romance (lyrics).mp3 INFO     done getting tag info
+11-17 18:54 Teenagers - My Chemical Romance (lyrics).mp3 INFO     changing the filename
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     renamed filename to teenagers_my-chemical-romance_the-black-parade.mp3
+11-17 18:54 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/teenagers_my-chemical-romance_the-black-parade.mp3')
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     generating audio vector
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done generating audio vector
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating BPM
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating BPM
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating loudness
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating loudness
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating key information
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating key information
+11-17 18:54 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating tone information
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating tone information
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the danceability
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating the amount of bass
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the amount of bass
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating the dynamic complexity
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the dynamic complexity
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating the zero crossing rate
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the zero crossing rate
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     calculating the intensity
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done calculating the intensity
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     uploading song to file storage server
+11-17 18:55 teenagers_my-chemical-romance_the-black-parade.mp3 INFO     done uploading song
+11-17 18:55 Check yes Juliet! (Run baby run) -We the kings w-lyrics! (Studio Quality).mp3 INFO     Logging Enabled
+11-17 18:55 Check yes Juliet! (Run baby run) -We the kings w-lyrics! (Studio Quality).mp3 INFO     getting tag info
+11-17 18:55 Check yes Juliet! (Run baby run) -We the kings w-lyrics! (Studio Quality).mp3 INFO     done getting tag info
+11-17 18:55 Check yes Juliet! (Run baby run) -We the kings w-lyrics! (Studio Quality).mp3 INFO     changing the filename
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     renamed filename to check-yes-juliet_we-the-kings_we-the-kings.mp3
+11-17 18:55 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/check-yes-juliet_we-the-kings_we-the-kings.mp3')
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     generating audio vector
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done generating audio vector
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating BPM
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating BPM
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating loudness
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating loudness
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating key information
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating key information
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating tone information
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating tone information
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating the danceability
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating the amount of bass
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating the amount of bass
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating the dynamic complexity
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating the dynamic complexity
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating the zero crossing rate
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating the zero crossing rate
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     calculating the intensity
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done calculating the intensity
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     uploading song to file storage server
+11-17 18:55 check-yes-juliet_we-the-kings_we-the-kings.mp3 INFO     done uploading song
+11-17 18:55 Hello Brooklyn - All Time Low (Lyrics).mp3 INFO     Logging Enabled
+11-17 18:55 Hello Brooklyn - All Time Low (Lyrics).mp3 INFO     getting tag info
+11-17 18:55 Hello Brooklyn - All Time Low (Lyrics).mp3 INFO     done getting tag info
+11-17 18:55 Hello Brooklyn - All Time Low (Lyrics).mp3 INFO     changing the filename
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     renamed filename to hello-brooklyn_all-time-low_nothing-personal.mp3
+11-17 18:55 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/hello-brooklyn_all-time-low_nothing-personal.mp3')
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     generating audio vector
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done generating audio vector
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating BPM
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating BPM
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating loudness
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating loudness
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating key information
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating key information
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating tone information
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating tone information
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating the danceability
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating the amount of bass
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating the amount of bass
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating the dynamic complexity
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating the dynamic complexity
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating the zero crossing rate
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating the zero crossing rate
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     calculating the intensity
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done calculating the intensity
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     uploading song to file storage server
+11-17 18:55 hello-brooklyn_all-time-low_nothing-personal.mp3 INFO     done uploading song
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     Logging Enabled
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     getting tag info
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done getting tag info
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     changing the filename
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     renamed filename to lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3
+11-17 18:55 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Songs/lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3')
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     generating audio vector
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done generating audio vector
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating BPM
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating BPM
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating loudness
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating loudness
+11-17 18:55 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating key information
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating key information
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating tone information
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating tone information
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the danceability... yeah seriously!
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the danceability
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the amount of bass
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the amount of bass
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the dynamic complexity
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the dynamic complexity
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the zero crossing rate
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the zero crossing rate
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     calculating the intensity
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done calculating the intensity
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     uploading song to file storage server
+11-17 18:56 lifestyles-of-the-rich-and-fam_good-charlotte_the-young-and-the-hopeless.mp3 INFO     done uploading song
+11-17 18:56 root         INFO     Uploadingoutput_11-17-2015--18-53-8.txt
+11-17 18:56 paramiko.transport.sftp DEBUG    [chan 0] open('/DemoDay/Information/output_11-17-2015--18-53-8.txt', 'wb')
+11-17 18:56 paramiko.transport.sftp DEBUG    [chan 0] open('/DemoDay/Information/output_11-17-2015--18-53-8.txt', 'wb') -> 00000000
+11-17 18:56 paramiko.transport.sftp DEBUG    [chan 0] close(00000000)
+11-17 18:56 paramiko.transport.sftp DEBUG    [chan 0] stat('/DemoDay/Information/output_11-17-2015--18-53-8.txt')
+11-17 18:56 paramiko.transport.sftp DEBUG    [chan 0] chmod('/DemoDay/Information/output_11-17-2015--18-53-8.txt', 511)
+11-17 18:56 root         INFO     Done Uploading
+11-17 18:56 paramiko.transport.sftp INFO     [chan 0] sftp session closed.
+11-17 18:56 paramiko.transport DEBUG    [chan 0] EOF sent (0)
+11-17 18:56 paramiko.transport DEBUG    EOF in transport thread
+11-17 18:56 root         INFO     Done with Analysis and Upload :)

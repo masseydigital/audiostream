@@ -23,7 +23,7 @@
 			
 			<ul class="sidebar-list">
 				<li>
-				<input id="searchBar" type="text" name="search">
+				<!--<input id="searchBar" type="text" name="search">-->
 				</li>
 				<li>
 				
@@ -50,27 +50,18 @@
 			</div>
 
 			<div id="mainPlayer">
-				<button id="playPauseButton" onclick="
-				if(playing) {
-				playing = false;
-				document.getElementById('playPauseButton').className = 'fa fa-play';
-				} else {
-				playing = true;
-				document.getElementById('playPauseButton').className = 'fa fa-pause';
-				}
-				playPause('song');
-				" class="fa fa-play"></button>
-				<button class="playerButton" onclick="document.getElementById('song').currentTime='0'"><i class="fa fa-fast-backward"></i></button>
+				<button id="playPauseButton" onclick="playPause('song')" class="fa fa-play"></button>
+				<button class="playerButton" onclick="restartSong()"><i class="fa fa-fast-backward"></i></button>
+				<button class="playerButton" onclick="nextSong()"><i class="fa fa-fast-forward"></i></button>
 				<button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button>
-				<button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button>			
-				
+				<button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button>
 			</div>
 			
 			<div id="playerWrapper">
 				<div id="audioplayer" class="size-med">
 				  <div id="songSlider" onclick="setSongPosition(this,event)">
 				  	<div id="songTimeA">0:00</div>
-				  	<div id="songTimeB">2:14</div>
+				  	<div id="songTimeB"></div>
 				  	<div id="trackProgress">
 				  		<div id="songTimeC">0:00</div>
 				  		<div id="songTimeD">&hellip;</div>
@@ -84,13 +75,12 @@
 				  </div>
 				</div>
 
-
-
-				<audio id="song" ontimeupdate="updateTime()">
-				<source src="testAudio/test.mp3"/>
+				<div id="songWrapper">
+				<audio id="song" ontimeupdate="updateTime(); updatePlaylist();">
 				  Your browser does not support the audio tag.
 				</audio>
-				
+				</div>
+
 			</div>
 		</div>
 	</body>
