@@ -38,12 +38,15 @@
       }
       #mainPlayer {
         margin: auto;
-        position: relative;
-        bottom: 60px;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+          right: 0;
         text-align: center;
         height: 400px;
         width: 330px;
-        border:3px solid #673AB7;
+        border:3px solid #673AB7;           /* This is the main player as it helpfully says at the beginning. Ignore this comment... */
         padding: 10px;
         background-color: black;
         color: white;
@@ -53,8 +56,8 @@
         background: #000;
         padding: 3px;
         position: fixed;
-        margin: center;
-        bottom: 0%;
+       margin: center;
+       bottom: 0%;
         width: 100%;
         opacity:1;
         right: 0px;
@@ -70,7 +73,7 @@
 		    width:50px;
 	     	height:50px;
         padding: 10px;
-        outline:none;
+        outline: none;
         display: inline-block;
         border-radius: 50%;
         cursor: pointer;
