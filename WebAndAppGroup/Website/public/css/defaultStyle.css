@@ -14,7 +14,7 @@
         right: 0;
         z-index: 9999;
       }
-      body { }
+      
       #headerFont {position: relative; color: white; top: 8px;}
       #headerWrapper {
         background: #000;
@@ -62,6 +62,7 @@
       #playerWrapper:hover {opacity: 1;}
       
 	  .playerButton {
+        position: relative;
         background:linear-gradient(to bottom, #40b3ff, #09f);
 		    color:#f5f5f5;
 		    background: #464646;
@@ -76,24 +77,47 @@
       }
       .playerButton:hover {
         background: rgb(128, 0, 128);
+        width: 52px;
+        height: 52px;
+      }
+      .buttonContainer {
+        position: relative;
+        float: left;
+        top: 340px;
+        left: 15%;
+        width: 55px;
+        height: 55px;
       }
       #playPauseButton {
+        position: relative;
         background:linear-gradient(to bottom, #40b3ff, #09f);
         color:#f5f5f5;
         background: #464646;
         border: 2px solid #f5f5f5;
-        width:50px;
-        height:50px;
+        width:100px;
+        height:100px;
         padding: 10px;
         outline:none;
         display: inline-block;
         border-radius: 50%;
         margin: auto;
         cursor: pointer;
+        right: 110px;
       }
       #playPauseButton:hover {
         background: rgb(128, 0, 128);
+        width: 102px;
+        height: 102px;
+        margin: auto;
       }
+
+      #metaTagDiv {
+        position: relative;
+        color: white;
+        left: 5%;
+        top: 70px;
+      }
+
       #defaultTimeline {
         width: 95%;
         margin: auto;
@@ -125,6 +149,7 @@
     background: linear-gradient(to bottom, #222222 0%,#000000 100%);
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
 }
 /*Track progress bar*/
 .size-med #trackProgress{
@@ -140,6 +165,7 @@
     background: -o-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
     background: -ms-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
     background: linear-gradient(to right, #301B56 0%,#673AB7 50%,#301B56 100%);
+
 }
 
 .size-med #songTimeA{
@@ -166,7 +192,7 @@
   position: absolute;
   left: 3px;
   font-size: 10px;
-  color: #121212;
+  color: #666;
   pointer-events: none;
   cursor: default;
 }
@@ -180,6 +206,7 @@
   color: #111;
   pointer-events: none;
   cursor: default;
+  display:none;
 }
 
 #volume-container{

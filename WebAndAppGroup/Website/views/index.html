@@ -26,10 +26,8 @@
 				<!--<input id="searchBar" type="text" name="search">-->
 				</li>
 				<li>
-				
 				</li>
 				<li>
-				<button id="sidebarButton" type="button">testTab</button>
 				</li>
 				<li>
 				Playlist_2
@@ -51,10 +49,14 @@
 
 			<div id="mainPlayer">
 				<button id="playPauseButton" onclick="playPause('song')" class="fa fa-play"></button>
-				<button class="playerButton" onclick="restartSong()"><i class="fa fa-fast-backward"></i></button>
-				<button class="playerButton" onclick="nextSong()"><i class="fa fa-fast-forward"></i></button>
-				<button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button>
-				<button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button>
+				<div class="buttonContainer"><button class="playerButton" onclick="restartSong()"><i class="fa fa-fast-backward"></i></button></div>
+				<div class="buttonContainer"><button class="playerButton" onclick="nextSong()"><i class="fa fa-fast-forward"></i></button></div>
+				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button></div>
+				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button></div>
+			</div>
+
+			<div id="metaTagDiv">
+
 			</div>
 			
 			<div id="playerWrapper">

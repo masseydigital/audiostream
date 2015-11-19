@@ -13,32 +13,56 @@ var init = false; //Determines if the play button has been pressed at least once
 //Used to hold active song info, is updated from eventual database
 //songObject = {id,source,title,artist,length};
 
+var SongObject = function(songID, songDir, songTitle, songArtist) {
+  this.songID = songID;
+  this.songDir = songDir;
+  this.songTitle = songTitle;
+  this.songArtist = songArtist;
+}
+
+var song_1 = new SongObject(0, "somethings-gotta-give_all-time-low_future-hearts.mp3", "Something's Gotta Give", "All Time Low");
+var song_2 = new SongObject(1, "break-your-little-heart_all-time-low_nothing-personal.mp3", "Break Your Little Heart", "All Time Low");
+var song_3 = new SongObject(3, "the-anthem_good-charlotte_the-young-and-the-hopeless.mp3", "The Anthem", "Good Charlotte");
+//var song_3 = new SongObject(4);
+
 //Debug song destination array
-var songSrc = ['somethings-gotta-give_all-time-low_future-hearts.mp3','break-your-little-heart_all-time-low_nothing-personal.mp3', 'the-anthem_good-charlotte_the-young-and-the-hopeless.mp3'];
+var songSrc = [song_1, song_2, song_3];
 var currentSongSrc = 0;
-currentSongDir = "testAudio/" + songSrc[currentSongSrc];
 
-
+currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
 
 function nextSong() {
-
+  if(init) {
   if(currentSongSrc + 1 < songSrc.length) {
     currentSongSrc++;
-    currentSongDir = "testAudio/" + songSrc[currentSongSrc];
+    currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
     activeSong.src = currentSongDir;
     activeSong.load();
     activeSong.play('song');
+    appendMetaTag();
     if(song.paused) {
       document.getElementById('playPauseButton').className = 'fa fa-pause';
     }
   } else {
     alert("No More Songs!");
+    document.getElementById('song').currentTime = '0';
+    document.getElementById('playPauseButton').className = 'fa fa-play';
+    currentSongSrc = 0;
+    currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
+    activeSong.src = currentSongDir;
+    activeSong.load();
+    appendMetaTag();
+    activeSong.pause();
   }
+}
 }
 
 function restartSong() {
   document.getElementById('song').currentTime='0';
+}
 
+function appendMetaTag() {
+  document.getElementById('metaTagDiv').innerHTML = "Currently Playing: " + songSrc[currentSongSrc].songTitle + " - " + songSrc[currentSongSrc].songArtist;
 }
 
 //Volume
@@ -70,10 +94,10 @@ function pause() {
 function playPause(id) {
     //Sets the active song since one of the functions could be play.
     activeSong = document.getElementById(id);
-
     if(!init) {
       activeSong.src = currentSongDir;
       activeSong.load();
+      appendMetaTag();
       init = true;
     }
 
@@ -118,13 +142,12 @@ function updateTime() {
 
 function updatePlaylist() {
     $("#song").bind('ended', function(){
-    
-    activeSong.currentTime = 0;
     nextSong();
     play(song);
+    activeSong.currentTime = 0;
+    appendMetaTag();
 });
 }
-
 
 
 function volumeUpdate(number){
