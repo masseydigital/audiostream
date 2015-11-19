@@ -38,10 +38,13 @@ function nextSong() {
     currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
     activeSong.src = currentSongDir;
     activeSong.load();
-    activeSong.play('song');
     appendMetaTag();
+    activeSong.play('song');
     if(song.paused) {
-      document.getElementById('playPauseButton').className = 'fa fa-pause';
+      document.getElementById('playPauseButton').className = 'fa fa-play';
+      activeSong.pause();
+    } else {
+      
     }
   } else {
     alert("No More Songs!");
