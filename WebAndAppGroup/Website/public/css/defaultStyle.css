@@ -1,172 +1,160 @@
-* {
-  margin: 0;
-  }
- *:focus {
-    outline: 0;
-} 
-      body {
-		    background-image: url("../images/background.jpg");
-	      font: 13px Helvetica, Arial; 
-      }
-      #content {
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-      }
-      
-      #headerFont {position: relative; color: white; top: 8px;}
-      #headerWrapper {
-        background: #000;
-        padding: 10px;
-        position: relative;
-        width: 100%;
-        margin-bottom: 260px;
-        }
-      #userGreet {
-        color: white;
-        position: relative;
-        bottom: 8px;
-        text-align: center;
-      }
-      #playerInfo {
-        font-family: 'Roboto', sans-serif;
-        font-weight: lighter;
-        font-size:  150%;
-        color: white;
-        padding: 20px;
-      }
-      #mainPlayer {
-        margin: auto;
-        position: relative;
-        bottom: 60px;
-        text-align: center;
-        height: 400px;
-        width: 330px;
-        border:3px solid #673AB7;
-        padding: 10px;
-        background-color: black;
-        color: white;
-        opacity:.8;
-      }
-      #playerWrapper {
-        background: #000;
-        padding: 3px;
-        position: fixed;
-        margin: center;
-        bottom: 0%;
-        width: 100%;
-        opacity:1;
-        right: 0px;
-      }
-      #playerWrapper:hover {opacity: 1;}
-      
-	  .playerButton {
-        position: relative;
-        background:linear-gradient(to bottom, #40b3ff, #09f);
-		    color:#f5f5f5;
-		    background: #464646;
-		    border: 2px solid #f5f5f5;
-		    width:50px;
-	     	height:50px;
-        padding: 10px;
-        outline:none;
-        display: inline-block;
-        border-radius: 50%;
-        cursor: pointer;
-      }
-      .playerButton:hover {
-        background: rgb(128, 0, 128);
-        width: 52px;
-        height: 52px;
-      }
-      .buttonContainer {
-        position: relative;
-        float: left;
-        top: 340px;
-        left: 15%;
-        width: 55px;
-        height: 55px;
-      }
-      #playPauseButton {
-        position: relative;
-        background:linear-gradient(to bottom, #40b3ff, #09f);
-        color:#f5f5f5;
-        background: #464646;
-        border: 2px solid #f5f5f5;
-        width:100px;
-        height:100px;
-        padding: 10px;
-        outline:none;
-        display: inline-block;
-        border-radius: 50%;
-        margin: auto;
-        cursor: pointer;
-        right: 110px;
-      }
-      #playPauseButton:hover {
-        background: rgb(128, 0, 128);
-        width: 102px;
-        height: 102px;
-        margin: auto;
-      }
-
-      #metaTagDiv {
-        position: relative;
-        color: white;
-       
-      }
-
-      #defaultTimeline {
-        width: 95%;
-        margin: auto;
-        height: 5px;
-        background: #4200f7;
-      }    
-      audio {display:none;}
-    /* BG */
-    #audioplayer.size-med {
-      width: 100%;
-      height: 18px;
-      position: relative;
-      margin: 20px;
-    }
-
+* {margin: 0;}
+*:focus {outline: 0;}
+body {
+  background-image: url("../images/background.jpg");
+	font: 13px Helvetica, Arial; 
+}
+#content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+#headerFont {position: relative; color: white; top: 8px;}
+#headerWrapper {
+  background: #000;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 260px;
+}
+#userGreet {
+  color: white;
+  position: relative;
+  bottom: 8px;
+  text-align: center;
+}
+#playerInfo {
+  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
+  font-size:  150%;
+  color: white;
+  padding: 20px;
+}
+#mainPlayer {
+  margin: auto;
+  position: relative;
+  bottom: 60px;
+  text-align: center;
+  height: 400px;
+  width: 330px;
+  border:3px solid #673AB7;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  opacity:.8;
+}
+#playerWrapper {
+  background: #000;
+  padding: 3px;
+  position: fixed;
+  margin: center;
+  bottom: 0%;
+  width: 100%;
+  opacity:1;
+  right: 0px;
+}
+#playerWrapper:hover {opacity: 1;}      
+.playerButton {
+  position: relative;
+  background:linear-gradient(to bottom, #40b3ff, #09f);
+	color:#f5f5f5;
+	background: #464646;
+	border: 2px solid #f5f5f5;
+	width:50px;
+	height:50px;
+  padding: 10px;
+  outline:none;
+  display: inline-block;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.playerButton:hover {
+  background: rgb(128, 0, 128);
+  width: 52px;
+  height: 52px;
+}
+.buttonContainer {
+  position: relative;
+  float: left;
+  top: 340px;
+  left: 15%;
+  width: 55px;
+  height: 55px;
+}
+#playPauseButton {
+  position: relative;
+  background:linear-gradient(to bottom, #40b3ff, #09f);
+  color:#f5f5f5;
+  background: #464646;
+  border: 2px solid #f5f5f5;
+  width:100px;
+  height:100px;
+  padding: 10px;
+  outline:none;
+  display: inline-block;
+  border-radius: 50%;
+  margin: auto;
+  cursor: pointer;
+  right: 110px;
+}
+#playPauseButton:hover {
+  background: rgb(128, 0, 128);
+  width: 102px;
+  height: 102px;
+  margin: auto;
+}
+#metaTagDiv {
+  position: relative;
+  color: white; 
+}
+#defaultTimeline {
+  width: 95%;
+  margin: auto;
+  height: 5px;
+  background: #4200f7;
+}    
+audio {display:none;}
+/* BG */
+#audioplayer.size-med {
+  width: 100%;
+  height: 18px;
+  position: relative;
+  margin: 20px;
+}
 /*Song location slider*/
 .size-med #songSlider{
-    width: 90%;
-    height: 12px;
-    float: left;
-    border-bottom: 1px solid #232323;
-    border-radius: 3px;
-    overflow: hidden;
-    background: -moz-linear-gradient(top, #222222 0%, #000000 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222222), color-stop(100%,#000000));
-    background: -webkit-linear-gradient(top, #222222 0%,#000000 100%);
-    background: -o-linear-gradient(top, #222222 0%,#000000 100%);
-    background: -ms-linear-gradient(top, #222222 0%,#000000 100%);
-    background: linear-gradient(to bottom, #222222 0%,#000000 100%);
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
+  width: 90%;
+  height: 12px;
+  float: left;
+  border-bottom: 1px solid #232323;
+  border-radius: 3px;
+  overflow: hidden;
+  background: -moz-linear-gradient(top, #222222 0%, #000000 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222222), color-stop(100%,#000000));
+  background: -webkit-linear-gradient(top, #222222 0%,#000000 100%);
+  background: -o-linear-gradient(top, #222222 0%,#000000 100%);
+  background: -ms-linear-gradient(top, #222222 0%,#000000 100%);
+  background: linear-gradient(to bottom, #222222 0%,#000000 100%);
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
 /*Track progress bar*/
 .size-med #trackProgress{
-    width: 0;
-    height: 11px;
-    margin-top: 1px;
-    overflow: hidden;
-    position: relative;
-    background: #673AB7;
-    background: -moz-linear-gradient(left, #301B56 0%, #673AB7 50%, #301B56 100%);
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#301B56), color-stop(50%,#00a8ff), color-stop(100%,#50c3fe));
-    background: -webkit-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
-    background: -o-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
-    background: -ms-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
-    background: linear-gradient(to right, #301B56 0%,#673AB7 50%,#301B56 100%);
-
+  width: 0;
+  height: 11px;
+  margin-top: 1px;
+  overflow: hidden;
+  position: relative;
+  background: #673AB7;
+  background: -moz-linear-gradient(left, #301B56 0%, #673AB7 50%, #301B56 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#301B56), color-stop(50%,#00a8ff), color-stop(100%,#50c3fe));
+  background: -webkit-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
+  background: -o-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
+  background: -ms-linear-gradient(left, #301B56 0%,#673AB7 50%,#301B56 100%);
+  background: linear-gradient(to right, #301B56 0%,#673AB7 50%,#301B56 100%);
 }
-
 .size-med #songTimeA{
   margin-top: 1px;
   position: absolute;
@@ -176,7 +164,6 @@
   pointer-events: none;
   cursor: default;
 }
-
 .size-med #songTimeB{
   margin-top: 1px;
   position: absolute;
@@ -186,7 +173,6 @@
   pointer-events: none;
   cursor: default;
 }
-
 .size-med #songTimeC{
   position: absolute;
   left: 3px;
@@ -195,7 +181,6 @@
   pointer-events: none;
   cursor: default;
 }
-
 .size-med #songTimeD{
   position: absolute;
   text-align: right;
@@ -207,7 +192,6 @@
   cursor: default;
   display:none;
 }
-
 #volume-container{
   position: absolute;
   width: 70px;
@@ -216,7 +200,6 @@
   padding-top: 10px;
   right: -17px;
 }
-
 /*Volume Up Button*/
 .size-med #volumeUp{
   position: absolute;
@@ -229,40 +212,38 @@
   -moz-transition: opacity .25s linear;
   -webkit-transition: opacity .25s linear;
 }
-
 /*Volume Meter*/
 .size-med #volumeMeter{
-    width: 8px;
-    height: 40px;
-    box-shadow: inset 1px 0 3px #000;
-    position: absolute;
-    right: 0px;
-    top: -2px;
-    opacity: 0;
+  width: 8px;
+  height: 40px;
+  box-shadow: inset 1px 0 3px #000;
+  position: absolute;
+  right: 0px;
+  top: -2px;
+  opacity: 0;
   transition: opacity .25s linear;
   -moz-transition: opacity .25s linear;
   -webkit-transition: opacity .25s linear;
-    background: #292929;
+  background: #292929;
   background: -moz-linear-gradient(left, #444444 0%, #111111 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#444444), color-stop(100%,#111111));
   background: -webkit-linear-gradient(left, #444444 0%,#111111 100%);
   background: -o-linear-gradient(left, #444444 0%,#111111 100%);
   background: -ms-linear-gradient(left, #444444 0%,#111111 100%);
   background: linear-gradient(to right, #444444 0%,#111111 100%);
-    overflow: hidden;
-    border: 1px solid #fff;
-    border-radius: 2px;
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    transform: rotate(180deg);
+  overflow: hidden;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
-
 /*Volume Location Meter*/
 .size-med #volumeStatus{
-    width: 8px;
-    height: 40px;
-    box-shadow: inset 1px 0 3px #666;
-    background: #0077b4;
+  width: 8px;
+  height: 40px;
+  box-shadow: inset 1px 0 3px #666;
+  background: #0077b4;
   background: -moz-linear-gradient(top, #0077b4 0%, #00a8ff 50%, #50c3fe 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b4), color-stop(50%,#00a8ff), color-stop(100%,#50c3fe));
   background: -webkit-linear-gradient(top, #0077b4 0%,#00a8ff 50%,#50c3fe 100%);
@@ -270,19 +251,15 @@
   background: -ms-linear-gradient(top, #0077b4 0%,#00a8ff 50%,#50c3fe 100%);
   background: linear-gradient(to bottom, #0077b4 0%,#00a8ff 50%,#50c3fe 100%);
 }
-
 #volume-container:hover #volumeMeter{
   opacity: 1;
 }
-
-
 #volume {
   float: left;
   margin-left: 0px;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 #volume-icon{
   width: 6px;
   height: 6px;
@@ -292,12 +269,11 @@
   font-size: 8px;
   position: relative;
   display: inline-block;
-    *display: inline;
-    zoom: 1.0;
+  *display: inline;
+  zoom: 1.0;
   margin: 6px 6px 6px 0;
   box-shadow: 0 1px 2px #000;
 }
-
 #volume-icon:after{
   content:'';
   display: block;
@@ -309,7 +285,6 @@
   border: 8px solid transparent;
   border-right: 8px solid #e9e9e9;
 }
-
 #volume-container:hover:before{
   content: '';
   width: 0;
@@ -320,13 +295,10 @@
   border: 6px solid transparent;
   border-left: 6px solid #242424;
 }
-
 #volume-container:hover #volumeUp, #volume-container:hover #volumeDown{
   opacity: 1;
   text-shadow: 0 1px 0 #000;
 }
-
-
 #volume span{
   font-size: 16px;
   width: 3px;
@@ -334,26 +306,22 @@
   text-align: center;
   color: #e9e9e9;
   display: inline-block;
-    *display: inline;
-    zoom: 1.0;
+  *display: inline;
+  zoom: 1.0;
   vertical-align: middle;
   text-shadow: 0 1px 2px #000;
 }
-
 #volume span:nth-child(3){
   font-size: 12px;
 }
-
 #volume span:nth-child(2){
   font-size: 9px;
 }
-
 #volume.muted span{
   display: none;  
 }
 
 /* TRACKLIST */
-
 #tracklist{
   font-size: 12px;
   color: #666;
@@ -374,19 +342,15 @@
   padding: 0;
   font-weight: normal;
 }
-
 #tracklist ul li{
   cursor: pointer;
 }
-
 #tracklist ul li:hover{
   opacity: .7;
 }
-
 #tracklist ul li span{
   color: #00a8ff;
 }
-
 #tracklist ul li em{
   color: #999;
   font-size: 10px;
