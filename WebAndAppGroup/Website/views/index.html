@@ -9,6 +9,8 @@
 		<script src="javascript/playerScript.js"></script>
 		<script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
 		<script type='text/javascript' src="javascript/toggleMenuScript.js"></script>
+		<script type='text/javascript' src="javascript/socket.js"></script>
+		<script type='text/javascript' src="/socket.io/socket.io.js"></script>
 	</head>
 
 	<body onkeypress="isKeyPressed(event)">
@@ -23,17 +25,19 @@
 			
 			<ul class="sidebar-list">
 				<li>
-				<!--<input id="searchBar" type="text" name="search">-->
+				<input id="searchBar" type="text" name="search">
 				</li>
 				<li>
 				</li>
 				<li>
 				</li>
 				<li>
-				Playlist_2
+				<div id="metaTagDiv">
+
+			</div>
 				</li>
 				<li>
-				Playlist_3
+				<button id="searchButton">Send Query</button>
 				</li>
 				<li>
 				Playlist_4
@@ -55,9 +59,7 @@
 				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button></div>
 			</div>
 
-			<div id="metaTagDiv">
-
-			</div>
+			
 			
 			<div id="playerWrapper">
 				<div id="audioplayer" class="size-med">
@@ -82,7 +84,6 @@
 				  Your browser does not support the audio tag.
 				</audio>
 				</div>
-
 			</div>
 		</div>
 	</body>

@@ -272,7 +272,7 @@ function muteAudio(){
   }
 }
 
-$(function(){
+(function(){
   
   //Draggable player
   $('#audioplayer').draggable();

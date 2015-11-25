@@ -35,7 +35,7 @@ $(window).load(function(){
 });
 
 $(document).ready(function(){
-			$('#sidebar-toggle').click(function(){
-				$(this).toggleClass('open');
-			});
-		});
+	$('#sidebar-toggle').click(function(){
+		$(this).toggleClass('open');
+	});
+});

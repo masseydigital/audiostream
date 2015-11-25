@@ -3,39 +3,18 @@ var express = require('express');
 var colors = require('colors');
 var jquery = require('jquery');
 var mysql = require('mysql');
+var http = require('http');
 
 var app = express();
 var port = 8000;
 
 var pool = mysql.createPool({
-    host     : '71.220.53.35',
-    user     : 'root',
-    password : '1111',
-    database : 'test',
+    host     : 'rei.cs.ndsu.nodak.edu',
+    user     : 'csci413f15_1',
+    password : 'F9UnP31c',
+    database : 'csci413f15_1',
     debug    :  false
 });
-
-function handle_database(req, res) {
-    
-    pool.getConnection(function(err,connection){
-        if (err) {
-          //connection.release();
-          //res.json({"code" : 100, "status" : "Error in connection database"});
-		  console.log("Error connecting to the database");
-          return;
-        }   
-
-        console.log('connected as id ' + connection.threadId);
-        
-		connection.query("select * from test",function(err,rows){
-            //connection.release();
-            if(!err) {
-                //res.json(rows);
-				console.log(rows[0]);
-            }           
-        });
-  });
-}
 
 console.log("Grabbing public resources...");
 //Where html documents grab stuff for the site
@@ -45,7 +24,6 @@ console.log("Adding view directories...");
 //Defining url directories
 //Default Directory
 app.get('/', function(req, res) {
-	handle_database(req, res);
     res.sendFile(__dirname + '/views/index.html');
 });
 //Login Directory
@@ -58,6 +36,39 @@ app.get('/playerDebug', function(req, res) {
     res.sendFile(__dirname + '/views/playerDebug.html');
 });
 
-app.listen(port);
+var server = app.listen(port);
 console.log(colors.magenta('Success! Audio site listening on port ' + port));
+var io = require('socket.io').listen(server);
+
+io.sockets.on('connection', function(socket){
+    socket.emit('message', {'message': 'hello world'});
+	
+	socket.on('message', function(data){
+		console.log("Got your message");
+		var query = 'SELECT songID, title, album, artist, genre FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title = "' + data.message + '" OR artist = "' + data.message + '" OR album = "' + data.message + '" OR genre = "' + data.message + '")';
+		console.log(query);
+		handle_database(socket, query);
+		
+    });
+});
+
+function handle_database(socket, query) {
+    pool.getConnection(function(error,connection){
+        if (error) {
+		  console.log("error connecting to the database");
+        }   
+
+		//"select * from SONGS"
+		connection.query(query, function(error,results,fields){
+			//connection.end();
+            if(!error) {
+				console.log(results);
+				socket.emit('message', {'message': results[0].songID});
+				socket.emit('message', {'message': results[0].title});
+            }
+        });
+	});
+}
+
+
 
