@@ -265,12 +265,7 @@ function muteAudio() {
   }
 }
 
-<<<<<<< HEAD
 (function(){
-  
-=======
-$(function() {  
->>>>>>> origin/webdevbranch
   //Draggable player
   $('#audioplayer').draggable();
   //Changing Song
