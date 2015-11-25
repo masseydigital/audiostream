@@ -4,7 +4,6 @@
 		<link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
 		<link rel="stylesheet" type="text/css" href="css/sidebarStyle.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="font-awesome-animation.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
 		<script src="javascript/playerScript.js"></script>
 		<script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
@@ -14,43 +13,49 @@
 	</head>
 
 	<body onkeypress="isKeyPressed(event)">
-
+		<!--Sidebar Toggle-->
 		<div class="sidebar">
 			<div id="sidebar-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
+				<span></span><span></span><span></span><span></span>
 			</div>
-			
+			<!--Contains music search form, predefined playlists, and liked songs.
+				Enter on the form should display an additional window with results-->
 			<ul class="sidebar-list">
 				<li>
 				<input id="searchBar" type="text" name="search">
 				</li>
 				<li>
+				playlist_1
 				</li>
 				<li>
+				playlist_2
 				</li>
 				<li>
+<<<<<<< HEAD
 				<div id="metaTagDiv">
 
 			</div>
 				</li>
 				<li>
 				<button id="searchButton">Send Query</button>
+=======
+				playlist_3
+>>>>>>> origin/webdevbranch
 				</li>
 				<li>
-				Playlist_4
+				liked_songs
 				</li>
 			</ul>
 		</div>
-		
+		<!--Contains header, footer, and centered player-->
 		<div class="content">
 			<div id="headerWrapper">
 				<h3 id="headerFont" style="margin:auto">Spotidora.fm</h3>
 				<h3 id="userGreet">Hello User!</h3>
+				<!--Holds song information and writes it to the header-->
+				<div id="metaTagDiv"></div>
 			</div>
-
+			<!--Holds centered player buttons: Play/Pause Toggle, Restart, Skip, and Volume Control-->
 			<div id="mainPlayer">
 				<button id="playPauseButton" onclick="playPause('song')" class="fa fa-play"></button>
 				<div class="buttonContainer"><button class="playerButton" onclick="restartSong()"><i class="fa fa-fast-backward"></i></button></div>
@@ -58,31 +63,33 @@
 				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button></div>
 				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button></div>
 			</div>
+<<<<<<< HEAD
 
 			
 			
+=======
+			<!--Contains footer information: Timeline and currently a quick mute button.-->
+>>>>>>> origin/webdevbranch
 			<div id="playerWrapper">
 				<div id="audioplayer" class="size-med">
-				  <div id="songSlider" onclick="setSongPosition(this,event)">
-				  	<div id="songTimeA">0:00</div>
-				  	<div id="songTimeB"></div>
-				  	<div id="trackProgress">
-				  		<div id="songTimeC">0:00</div>
-				  		<div id="songTimeD">&hellip;</div>
+				  	<div id="songSlider" onclick="setSongPosition(this,event)">
+				  		<div id="songTimeA">0:00</div>
+				  		<div id="songTimeB"></div>
+				  		<div id="trackProgress">
+				  			<div id="songTimeC">0:00</div>
+				  			<div id="songTimeD">&hellip;</div>
+				  		</div>
+				 	</div>
+				  	<div id="volume-container">
+				    	<div id="volume" onclick="muteAudio()"><div id="volume-icon"></div><span>)</span><span>)</span><span>)</span></div>
+				    	<div id="volumeUp" onclick="changeVolume(10, 'up')">+</div><br>
+				    	<div id="volumeDown" onclick="changeVolume(10, 'down')">-</div>
+				    	<div id="volumeMeter" onclick="setNewVolume(this,event)"><div id="volumeStatus"></div></div>
 				  	</div>
-				  </div>
-				  <div id="volume-container">
-				    <div id="volume" onclick="muteAudio()"><div id="volume-icon"></div><span>)</span><span>)</span><span>)</span></div>
-				    <div id="volumeUp" onclick="changeVolume(10, 'up')">+</div><br>
-				    <div id="volumeDown" onclick="changeVolume(10, 'down')">-</div>
-				    <div id="volumeMeter" onclick="setNewVolume(this,event)"><div id="volumeStatus"></div></div>
-				  </div>
 				</div>
-
+				<!--Holds the real audio tag that the former tags and javascript are manipulating-->
 				<div id="songWrapper">
-				<audio id="song" ontimeupdate="updateTime(); updatePlaylist();">
-				  Your browser does not support the audio tag.
-				</audio>
+					<audio id="song" ontimeupdate="updateTime(); updatePlaylist();"></audio>
 				</div>
 			</div>
 		</div>

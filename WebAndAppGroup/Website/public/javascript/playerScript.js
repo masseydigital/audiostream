@@ -12,7 +12,6 @@ var init = false; //Determines if the play button has been pressed at least once
 
 //Used to hold active song info, is updated from eventual database
 //songObject = {id,source,title,artist,length};
-
 var SongObject = function(songID, songDir, songTitle, songArtist) {
   this.songID = songID;
   this.songDir = songDir;
@@ -29,12 +28,16 @@ var song_3 = new SongObject(3, "the-anthem_good-charlotte_the-young-and-the-hope
 var songSrc = [song_1, song_2, song_3];
 var currentSongSrc = 0;
 
+//Looks in the testAudio folder using this string.
 currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
 
 function nextSong() {
+  //Init returns true once the first song is played via play/pause toggle.
   if(init) {
   if(currentSongSrc + 1 < songSrc.length) {
+    //Sequentially goes to the next song in the playlist
     currentSongSrc++;
+    //Used to reinitialize the audio player with a new song source
     currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
     activeSong.src = currentSongDir;
     activeSong.load();
@@ -43,10 +46,9 @@ function nextSong() {
     if(song.paused) {
       document.getElementById('playPauseButton').className = 'fa fa-play';
       activeSong.pause();
-    } else {
-      
     }
   } else {
+    //Once the playlist has ended, the player is reset and loops the first song in the song object array.
     alert("No More Songs!");
     document.getElementById('song').currentTime = '0';
     document.getElementById('playPauseButton').className = 'fa fa-play';
@@ -59,11 +61,11 @@ function nextSong() {
   }
 }
 }
-
+//Restart Song
 function restartSong() {
   document.getElementById('song').currentTime='0';
 }
-
+//Append Meta Tag: Redraws meta tag info on the main page when a new song is played
 function appendMetaTag() {
   document.getElementById('metaTagDiv').innerHTML = "Currently Playing: " + songSrc[currentSongSrc].songTitle + " - " + songSrc[currentSongSrc].songArtist;
 }
@@ -90,7 +92,6 @@ function play(id){
 //Pauses the active song.
 function pause() {
     activeSong.pause();
-    
 }
 
 //Does a switch of the play/pause with one button.
@@ -121,7 +122,6 @@ function playPause(id) {
 //Updates the current time function so it reflects where the user is in the song.
 //This function is called whenever the time is updated.  This keeps the visual in sync with the actual time.
 function updateTime() {  
-
     var currentSeconds = (Math.floor(activeSong.currentTime % 60) < 10 ? '0' : '') + Math.floor(activeSong.currentTime % 60);
     var currentMinutes = Math.floor(activeSong.currentTime / 60);
     //Sets the current song location compared to the song duration.
@@ -137,46 +137,44 @@ function updateTime() {
     //Updates the track progress div.
     document.getElementById('trackProgress').style.width = Math.round(percentageOfSlider) + "px";
     
-    if(document.getElementById("songTimeA").innerHTML == document.getElementById("songTimeB").innerHTML){
+    if(document.getElementById("songTimeA").innerHTML == document.getElementById("songTimeB").innerHTML) {
       document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
       document.getElementById("songPlayPause").setAttribute("class", "");
     };  
 }
 
 function updatePlaylist() {
-    $("#song").bind('ended', function(){
+    $("#song").bind('ended', function() {
     nextSong();
     play(song);
     activeSong.currentTime = 0;
     appendMetaTag();
 });
 }
-
-
-function volumeUpdate(number){
+function volumeUpdate(number) {
     //Updates the volume of the track to a certain number.
     activeSong.volume = number / 100;
 }
 //Changes the volume up or down a specific number
-function changeVolume(number, direction){
+function changeVolume(number, direction) {
     //Checks to see if the volume is at zero, if so it doesn't go any further.
-    if(activeSong.volume >= 0 && direction == "down"){
+    if(activeSong.volume >= 0 && direction == "down") {
         activeSong.volume = activeSong.volume - (number / 100);
     }
     //Checks to see if the volume is at one, if so it doesn't go any higher.
-    if(activeSong.volume <= 1 && direction == "up"){
+    if(activeSong.volume <= 1 && direction == "up") {
         activeSong.volume = activeSong.volume + (number / 100);
     }
     
-     if(activeSong.volume > .6){
+     if(activeSong.volume > .6) {
       document.getElementById('volume').innerHTML = '<div id="volume-icon"></div><span>)</span><span>)</span><span>)</span>';
       document.getElementById("volume").setAttribute("class", "");
-    }else if(activeSong.volume > 0 && activeSong.volume <= .3){
+    } else if(activeSong.volume > 0 && activeSong.volume <= .3) {
       document.getElementById('volume').innerHTML = '<div id="volume-icon"></div><span>)</span>';
       document.getElementById("volume").setAttribute("class", "");
-    }else if(activeSong.volume == 0){
+    } else if(activeSong.volume == 0) {
       document.getElementById("volume").setAttribute("class", "muted");
-    }else{
+    } else {
       document.getElementById('volume').innerHTML = '<div id="volume-icon"></div><span>)</span><span>)</span>';
       document.getElementById("volume").setAttribute("class", "");
     }
@@ -188,14 +186,14 @@ function changeVolume(number, direction){
     document.getElementById('volumeStatus').style.height = Math.round(percentageOfVolumeSlider) + "px";
 }
 //Sets the location of the song based off of the percentage of the slider clicked.
-function setLocation(percentage){
+function setLocation(percentage) {
     activeSong.currentTime = activeSong.duration * percentage;
 }
 /*
 Gets the percentage of the click on the slider to set the song position accordingly.
 Source for Object event and offset: http://website-engineering.blogspot.com/2011/04/get-x-y-coordinates-relative-to-div-on.html
 */
-function setSongPosition(obj,e){
+function setSongPosition(obj,e) {
     //Gets the offset from the left so it gets the exact location.
     var songSliderWidth = obj.offsetWidth;
     var evtobj=window.event? event : e;
@@ -228,7 +226,6 @@ function setVolume(percentage){
     
     document.getElementById('volumeStatus').style.height = Math.round(percentageOfVolumeSlider) + "px";
 }
-
 //Set's new volume id based off of the click on the volume bar.
 function setNewVolume(obj,e){
     var volumeSliderHeight = obj.offsetHeight;
@@ -239,32 +236,28 @@ function setNewVolume(obj,e){
     setVolume(percentage);
 }
 //Stop song by setting the current time to 0 and pausing the song.
-function stopSong(){
+function stopSong() {
     activeSong.currentTime = 0;
     activeSong.pause();
     document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
     document.getElementById("songPlayPause").setAttribute("class", "");
 }
-
 //Change Song
-function changeSong(id){
+function changeSong(id) {
     stopSong();
-    
     //Sets the active song since one of the functions could be play.
     activeSong = document.getElementById(id);
-    
     activeSong.play();
 }
-
-//mute
-function muteAudio(){
+//Mute
+function muteAudio() {
   var ismuted = document.getElementById("volume").getAttribute("class") == "muted" ? true : false;
   var curVol = document.getElementById("volume").getAttribute("muteVol");
   
   if(ismuted == true){
     setVolume(curVol);
     document.getElementById("volume").setAttribute("class", "");
-  }else{
+  } else {
     var prevVol = document.getElementById('volumeStatus').offsetHeight / document.getElementById('volumeMeter').offsetHeight;
     setVolume(0);
     document.getElementById("volume").setAttribute("class", "muted");
@@ -272,21 +265,23 @@ function muteAudio(){
   }
 }
 
+<<<<<<< HEAD
 (function(){
   
+=======
+$(function() {  
+>>>>>>> origin/webdevbranch
   //Draggable player
   $('#audioplayer').draggable();
-  
   //Changing Song
-  $('#tracklist li').click(function(){
+  $('#tracklist li').click(function() {
     $('#tracklist li#playing em').remove();
     $('#tracklist li#playing').attr("id", "");
-    
+
     var audioLink = $(this).attr("audioLink");
     
     $(this).attr("id", "playing").append(" <em>(Playing)</em>");
     $("audio").remove();
     $("#tracklist").after('<audio id="song" ontimeupdate="updateTime()"><source src="'+audioLink+'" type="audio/mp3"/>Your browser does not support the audio tag.</audio>');
   });
-  
 });
