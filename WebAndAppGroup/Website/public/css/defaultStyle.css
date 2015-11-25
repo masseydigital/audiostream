@@ -122,6 +122,145 @@ audio {display:none;}
   position: relative;
   margin: 20px;
 }
+=======
+* {
+  margin: 0;
+  }
+ *:focus {
+    outline: 0;
+} 
+      body {
+		    background-image: url("../images/background.jpg");
+	      font: 13px Helvetica, Arial; 
+      }
+      #content {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+      }
+      
+      #headerFont {position: relative; color: white; top: 8px;}
+      #headerWrapper {
+        background: #000;
+        padding: 10px;
+        position: relative;
+        width: 100%;
+        margin-bottom: 260px;
+        }
+      #userGreet {
+        color: white;
+        position: relative;
+        bottom: 8px;
+        text-align: center;
+      }
+      #playerInfo {
+        font-family: 'Roboto', sans-serif;
+        font-weight: lighter;
+        font-size:  150%;
+        color: white;
+        padding: 20px;
+      }
+      #mainPlayer {
+        margin: auto;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        text-align: center;
+        height: 400px;
+        width: 330px;
+        border:3px solid #673AB7;           /* This is the main player as it helpfully says at the beginning. Ignore this comment... */
+        padding: 10px;
+        background-color: black;
+        color: white;
+        opacity:.8;
+      }
+      #playerWrapper {
+        background: #000;
+        padding: 3px;
+        position: fixed;
+       margin: center;
+       bottom: 0%;
+        width: 100%;
+        opacity:1;
+        right: 0px;
+      }
+      #playerWrapper:hover {opacity: 1;}
+      
+	  .playerButton {
+        position: relative;
+        background:linear-gradient(to bottom, #40b3ff, #09f);
+		    color:#f5f5f5;
+		    background: #464646;
+		    border: 2px solid #f5f5f5;
+		    width:50px;
+	     	height:50px;
+        padding: 10px;
+        outline: none;
+        display: inline-block;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .playerButton:hover {
+        background: rgb(128, 0, 128);
+        width: 52px;
+        height: 52px;
+      }
+      .buttonContainer {
+        position: relative;
+        float: left;
+        top: 340px;
+        left: 15%;
+        width: 55px;
+        height: 55px;
+      }
+      #playPauseButton {
+        position: relative;
+        background:linear-gradient(to bottom, #40b3ff, #09f);
+        color:#f5f5f5;
+        background: #464646;
+        border: 2px solid #f5f5f5;
+        width:100px;
+        height:100px;
+        padding: 10px;
+        outline:none;
+        display: inline-block;
+        border-radius: 50%;
+        margin: auto;
+        cursor: pointer;
+        right: 110px;
+      }
+      #playPauseButton:hover {
+        background: rgb(128, 0, 128);
+        width: 102px;
+        height: 102px;
+        margin: auto;
+      }
+
+      #metaTagDiv {
+        position: relative;
+        color: white;
+       
+      }
+
+      #defaultTimeline {
+        width: 95%;
+        margin: auto;
+        height: 5px;
+        background: #4200f7;
+      }    
+      audio {display:none;}
+    /* BG */
+    #audioplayer.size-med {
+      width: 100%;
+      height: 18px;
+      position: relative;
+      margin: 20px;
+    }
+
+>>>>>>> origin/webdevbranch
 /*Song location slider*/
 .size-med #songSlider{
   width: 90%;
