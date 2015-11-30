@@ -16,6 +16,6 @@ $(window).load(function(){
 		{
 			var query = document.getElementById('searchBar').value;
 			socket.emit('message', {'message': query});
-		}	
+		}
 	});
 });

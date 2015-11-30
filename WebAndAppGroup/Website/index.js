@@ -69,6 +69,3 @@ function handle_database(socket, query) {
         });
 	});
 }
-
-
-
