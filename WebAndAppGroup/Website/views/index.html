@@ -3,6 +3,7 @@
 		<title>Spotidora.fm</title>
 		<link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
 		<link rel="stylesheet" type="text/css" href="css/sidebarStyle.css">
+		<link rel="stylesheet" type="text/css" href="css/circleTrack.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
 		<script src="javascript/playerScript.js"></script>
@@ -54,6 +55,11 @@
 			</div>
 			<!--Holds centered player buttons: Play/Pause Toggle, Restart, Skip, and Volume Control-->
 			<div id="mainPlayer">
+				<!--This is the circle bar-->
+				<div class="wrapper" data-anim="base wrapper">
+					<div class="circle" data-anim="base left"></div>
+					<div class="circle" data-anim="base right"></div>
+				</div>
 				<button id="playPauseButton" onclick="playPause('song')" class="fa fa-play"></button>
 				<div class="buttonContainer"><button class="playerButton" onclick="restartSong()"><i class="fa fa-fast-backward"></i></button></div>
 				<div class="buttonContainer"><button class="playerButton" onclick="nextSong()"><i class="fa fa-fast-forward"></i></button></div>

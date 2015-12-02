@@ -122,7 +122,6 @@ audio {display:none;}
   position: relative;
   margin: 20px;
 }
-=======
 * {
   margin: 0;
   }
@@ -171,7 +170,7 @@ audio {display:none;}
         text-align: center;
         height: 400px;
         width: 330px;
-        border:3px solid #673AB7;           /* This is the main player as it helpfully says at the beginning. Ignore this comment... */
+        border:3px solid #673AB7;
         padding: 10px;
         background-color: black;
         color: white;
@@ -259,8 +258,6 @@ audio {display:none;}
       position: relative;
       margin: 20px;
     }
-
->>>>>>> origin/webdevbranch
 /*Song location slider*/
 .size-med #songSlider{
   width: 90%;
