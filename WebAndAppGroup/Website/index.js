@@ -16,6 +16,7 @@ var pool = mysql.createPool({
     debug    :  false
 });
 
+
 console.log("Grabbing public resources...");
 //Where html documents grab stuff for the site
 app.use(express.static('public'));
@@ -41,11 +42,11 @@ console.log(colors.magenta('Success! Audio site listening on port ' + port));
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket){
-    socket.emit('message', {'message': 'hello world'});
+    //socket.emit('message', {'message': 'hello world'});
 	
 	socket.on('message', function(data){
 		console.log("Got your message");
-		var query = 'SELECT songID, title, album, artist, genre FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title = "' + data.message + '" OR artist = "' + data.message + '" OR album = "' + data.message + '" OR genre = "' + data.message + '")';
+		var query = 'SELECT * FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title = "' + data.message + '" OR artist = "' + data.message + '" OR album = "' + data.message + '" OR genre = "' + data.message + '")';
 		console.log(query);
 		handle_database(socket, query);
 		
@@ -63,8 +64,9 @@ function handle_database(socket, query) {
 			//connection.end();
             if(!error) {
 				console.log(results);
-				socket.emit('message', {'message': results[0].songID});
-				socket.emit('message', {'message': results[0].title});
+				//socket.emit('message', {'message': results[0].songID});
+				//socket.emit('message', {'message': results[0].title});
+				socket.emit('message', {'message': results[0]});
             }
         });
 	});

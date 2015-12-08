@@ -1,3 +1,5 @@
+
+
 //playerScript.js
 //Responsible for all js audio player communication on the index page
 var audioElement = document.createElement('player');
@@ -60,6 +62,33 @@ function nextSong() {
     activeSong.pause();
   }
 }
+}
+
+function playSearched(songobject){
+	if(init) {
+  
+    //Used to reinitialize the audio player with a new song source
+    currentSongDir = "testAudio/" + songobject.songDir;
+    activeSong.src = currentSongDir;
+    activeSong.load();
+    appendMetaTag();
+    activeSong.play('song');
+    if(song.paused) {
+      document.getElementById('playPauseButton').className = 'fa fa-play';
+      activeSong.pause();
+    }
+  } else {
+    //Once the playlist has ended, the player is reset and loops the first song in the song object array.
+    alert("No More Songs!");
+    document.getElementById('song').currentTime = '0';
+    document.getElementById('playPauseButton').className = 'fa fa-play';
+    currentSongSrc = 0;
+    currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
+    activeSong.src = currentSongDir;
+    activeSong.load();
+    appendMetaTag();
+    activeSong.pause();
+  }
 }
 //Restart Song
 function restartSong() {
@@ -279,4 +308,28 @@ function muteAudio() {
     $("audio").remove();
     $("#tracklist").after('<audio id="song" ontimeupdate="updateTime()"><source src="'+audioLink+'" type="audio/mp3"/>Your browser does not support the audio tag.</audio>');
   });
+});
+
+$(window).load(function(){
+	$(document).ready(function() {
+
+		var socket = io.connect();
+					
+		socket.on('message', function(data){
+			console.log(data.message);
+			console.log(data.message.title);
+			var searchsong = new SongObject(data.message.songID, data.message.fileLocation, data.message.title, data.message.artist);
+			playSearched(searchsong);
+		});
+		
+		$('#searchButton').click(function() {
+			queryDatabase();	
+		});
+				
+		function queryDatabase()
+		{
+			var query = document.getElementById('searchBar').value;
+			socket.emit('message', {'message': query});
+		}
+	});
 });
