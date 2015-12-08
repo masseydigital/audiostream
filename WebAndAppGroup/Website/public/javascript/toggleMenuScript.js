@@ -10,7 +10,7 @@ $(window).load(function(){
 				}, 400);
 			
 				$('.content').animate({
-					marginLeft: "156px",
+					marginLeft: "216px",
 					opacity: "1"
 				}, 400);
 				
@@ -19,7 +19,7 @@ $(window).load(function(){
 			
 			else {
 				$('.sidebar').animate({
-					marginLeft: "-156px",
+					marginLeft: "-216px",
 					opacity: "1"
 				}, 400);
 			  

@@ -310,26 +310,79 @@ function muteAudio() {
   });
 });
 
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+function clicky()
+		{
+			console.log('clicked');
+		}
+
 $(window).load(function(){
 	$(document).ready(function() {
 
 		var socket = io.connect();
 					
-		socket.on('message', function(data){
+		socket.on('searchResult', function(data){
 			console.log(data.message);
 			console.log(data.message.title);
-			var searchsong = new SongObject(data.message.songID, data.message.fileLocation, data.message.title, data.message.artist);
-			playSearched(searchsong);
+			while(document.getElementById("pizza").hasChildNodes()){
+				var list = document.getElementById("pizza");
+				list.removeChild(list.childNodes[0]);
+			}
+			for(i = 0; i < data.message.length; i++){
+				if(data.message[i] != null)
+				{
+					console.log(data.message[i].title);
+					var span = document.createElement('span');
+					span.innerHTML = "Song: " + data.message[i].title + "\nArtist: " + data.message[i].artist + "\nAlbum: " + data.message[i].album;
+					var li = document.createElement('li');
+					li.appendChild(span);
+					li.setAttribute('onclick','clicky()');
+					document.getElementById('pizza').appendChild(li);
+				}
+			}
+			//var searchsong = new SongObject(data.message.songID, data.message.fileLocation, data.message.title, data.message.artist);
+			//playSearched(searchsong);
 		});
 		
 		$('#searchButton').click(function() {
 			queryDatabase();	
 		});
-				
+		
+		$('#butn').click(function() {
+			console.log("Button Clicked");	
+		});
+		
+		document.getElementById("searchBar").addEventListener("keydown", keypresser);
+		function keypresser(){
+			if($("#searchBar").is(':focus')){
+				setTimeout(function(){ queryDatabase(); }, 150);
+			}
+		}
+			
 		function queryDatabase()
 		{
 			var query = document.getElementById('searchBar').value;
-			socket.emit('message', {'message': query});
+			socket.emit('searchQuery', {'message': query});
 		}
+		
+		$('#searchBar').focusin(function() {
+			console.log("Focused");
+			document.getElementById("pizza").style.display = "block";
+		});
+		
+		$('#searchBar').focusout(function() {
+			console.log("Not Focused");
+			setTimeout(function(){
+				document.getElementById("pizza").style.display = "none";
+			}, 150);
+		});
 	});
 });

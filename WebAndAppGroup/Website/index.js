@@ -44,30 +44,24 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket){
     //socket.emit('message', {'message': 'hello world'});
 	
-	socket.on('message', function(data){
+	socket.on('searchQuery', function(data){
 		console.log("Got your message");
-		var query = 'SELECT * FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title = "' + data.message + '" OR artist = "' + data.message + '" OR album = "' + data.message + '" OR genre = "' + data.message + '")';
+		var query = 'SELECT * FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title LIKE "%' + data.message + '%" OR artist LIKE "%' + data.message + '%" OR album LIKE "%' + data.message + '%" OR genre LIKE "%' + data.message + '%")';
 		console.log(query);
-		handle_database(socket, query);
 		
+		pool.getConnection(function(error,connection){
+			if (error) {
+			  console.log("error connecting to the database");
+			}
+
+			connection.query(query, function(error,results,fields){
+				connection.release();
+				if(!error) {
+					//console.log(results);
+					var results4 = [results[0], results[1], results[2], results[3]]
+					socket.emit('searchResult', {'message': results4});
+				}
+			});
+		});
     });
 });
-
-function handle_database(socket, query) {
-    pool.getConnection(function(error,connection){
-        if (error) {
-		  console.log("error connecting to the database");
-        }   
-
-		//"select * from SONGS"
-		connection.query(query, function(error,results,fields){
-			//connection.end();
-            if(!error) {
-				console.log(results);
-				//socket.emit('message', {'message': results[0].songID});
-				//socket.emit('message', {'message': results[0].title});
-				socket.emit('message', {'message': results[0]});
-            }
-        });
-	});
-}
