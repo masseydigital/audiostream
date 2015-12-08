@@ -1,5 +1,3 @@
-
-
 //playerScript.js
 //Responsible for all js audio player communication on the index page
 var audioElement = document.createElement('player');
@@ -20,15 +18,6 @@ var SongObject = function(songID, songDir, songTitle, songArtist) {
   this.songTitle = songTitle;
   this.songArtist = songArtist;
 }
-
-var song_1 = new SongObject(0, "somethings-gotta-give_all-time-low_future-hearts.mp3", "Something's Gotta Give", "All Time Low");
-var song_2 = new SongObject(1, "break-your-little-heart_all-time-low_nothing-personal.mp3", "Break Your Little Heart", "All Time Low");
-var song_3 = new SongObject(3, "the-anthem_good-charlotte_the-young-and-the-hopeless.mp3", "The Anthem", "Good Charlotte");
-//var song_3 = new SongObject(4);
-
-//Debug song destination array
-var songSrc = [song_1, song_2, song_3];
-var currentSongSrc = 0;
 
 //Looks in the testAudio folder using this string.
 currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
@@ -73,22 +62,25 @@ function playSearched(songobject){
     activeSong.load();
     appendMetaTag();
     activeSong.play('song');
-    if(song.paused) {
-      document.getElementById('playPauseButton').className = 'fa fa-play';
-      activeSong.pause();
-    }
-  } else {
-    //Once the playlist has ended, the player is reset and loops the first song in the song object array.
-    alert("No More Songs!");
-    document.getElementById('song').currentTime = '0';
-    document.getElementById('playPauseButton').className = 'fa fa-play';
-    currentSongSrc = 0;
-    currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
-    activeSong.src = currentSongDir;
-    activeSong.load();
-    appendMetaTag();
-    activeSong.pause();
-  }
+	if(song != null){
+		if(song.paused) {
+		  document.getElementById('playPauseButton').className = 'fa fa-play';
+		  activeSong.pause();
+		}
+		else {
+			//Once the playlist has ended, the player is reset and loops the first song in the song object array.
+			alert("No More Songs!");
+			document.getElementById('song').currentTime = '0';
+			document.getElementById('playPauseButton').className = 'fa fa-play';
+			currentSongSrc = 0;
+			currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
+			activeSong.src = currentSongDir;
+			activeSong.load();
+			appendMetaTag();
+			activeSong.pause();
+		}
+	}
+}
 }
 //Restart Song
 function restartSong() {
@@ -97,6 +89,10 @@ function restartSong() {
 //Append Meta Tag: Redraws meta tag info on the main page when a new song is played
 function appendMetaTag() {
   document.getElementById('metaTagDiv').innerHTML = "Currently Playing: " + songSrc[currentSongSrc].songTitle + " - " + songSrc[currentSongSrc].songArtist;
+}
+
+function appendMeta(songTitle, songArtist) {
+  document.getElementById('metaTagDiv').innerHTML = "Currently Playing: " + songTitle + " - " + songArtist;
 }
 
 //Volume
@@ -139,12 +135,10 @@ function playPause(id) {
     if (activeSong.paused) {
          document.getElementById('playPauseButton').className = 'fa fa-pause';
          activeSong.play();
-         document.getElementById("songPlayPause").innerHTML = "||";
+         //document.getElementById("songPlayPause").innerHTML = "||";
     } else {
          document.getElementById('playPauseButton').className = 'fa fa-play';
          activeSong.pause();
-         document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
-         document.getElementById("songPlayPause").setAttribute("class", "");
         }
 }
 
@@ -165,11 +159,6 @@ function updateTime() {
     
     //Updates the track progress div.
     document.getElementById('trackProgress').style.width = Math.round(percentageOfSlider) + "px";
-    
-    if(document.getElementById("songTimeA").innerHTML == document.getElementById("songTimeB").innerHTML) {
-      document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
-      document.getElementById("songPlayPause").setAttribute("class", "");
-    };  
 }
 
 function updatePlaylist() {
@@ -268,8 +257,6 @@ function setNewVolume(obj,e){
 function stopSong() {
     activeSong.currentTime = 0;
     activeSong.pause();
-    document.getElementById("songPlayPause").innerHTML = "&#x25b6;";
-    document.getElementById("songPlayPause").setAttribute("class", "");
 }
 //Change Song
 function changeSong(id) {
@@ -280,49 +267,37 @@ function changeSong(id) {
 }
 //Mute
 function muteAudio() {
-  var ismuted = document.getElementById("volume").getAttribute("class") == "muted" ? true : false;
-  var curVol = document.getElementById("volume").getAttribute("muteVol");
+	var ismuted = document.getElementById("volume").getAttribute("class") == "muted" ? true : false;
+	var curVol = document.getElementById("volume").getAttribute("muteVol");
   
-  if(ismuted == true){
-    setVolume(curVol);
-    document.getElementById("volume").setAttribute("class", "");
-  } else {
-    var prevVol = document.getElementById('volumeStatus').offsetHeight / document.getElementById('volumeMeter').offsetHeight;
-    setVolume(0);
-    document.getElementById("volume").setAttribute("class", "muted");
-    document.getElementById("volume").setAttribute("muteVol", prevVol);
-  }
+	if(ismuted == true){
+		setVolume(curVol);
+		document.getElementById("volume").setAttribute("class", "");
+	}
+	else {
+		var prevVol = document.getElementById('volumeStatus').offsetHeight / document.getElementById('volumeMeter').offsetHeight;
+		setVolume(0);
+		document.getElementById("volume").setAttribute("class", "muted");
+		document.getElementById("volume").setAttribute("muteVol", prevVol);
+	}
 }
-
-(function(){
-  //Draggable player
-  $('#audioplayer').draggable();
-  //Changing Song
-  $('#tracklist li').click(function() {
-    $('#tracklist li#playing em').remove();
-    $('#tracklist li#playing').attr("id", "");
-
-    var audioLink = $(this).attr("audioLink");
-    
-    $(this).attr("id", "playing").append(" <em>(Playing)</em>");
-    $("audio").remove();
-    $("#tracklist").after('<audio id="song" ontimeupdate="updateTime()"><source src="'+audioLink+'" type="audio/mp3"/>Your browser does not support the audio tag.</audio>');
-  });
-});
 
 function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
+	var start = new Date().getTime();
+	for (var i = 0; i < 1e7; i++) {
+		if ((new Date().getTime() - start) > milliseconds){
+			break;
+		}
+	}
 }
 
-function clicky()
-		{
-			console.log('clicked');
-		}
+function clicky(object)
+{
+	var searchsong = new SongObject(object.source_data.songID, object.source_data.fileLocation, object.source_data.title, object.source_data.artist);
+	playSearched(searchsong);
+	console.log(object.source_data.artist);
+	appendMeta(object.source_data.title, object.source_data.artist);
+}
 
 $(window).load(function(){
 	$(document).ready(function() {
@@ -339,17 +314,16 @@ $(window).load(function(){
 			for(i = 0; i < data.message.length; i++){
 				if(data.message[i] != null)
 				{
-					console.log(data.message[i].title);
+					//console.log(data.message[i].title);
 					var span = document.createElement('span');
 					span.innerHTML = "Song: " + data.message[i].title + "\nArtist: " + data.message[i].artist + "\nAlbum: " + data.message[i].album;
 					var li = document.createElement('li');
 					li.appendChild(span);
-					li.setAttribute('onclick','clicky()');
+					li.setAttribute('onclick','clicky(this)');
+					li.source_data = data.message[i];
 					document.getElementById('pizza').appendChild(li);
 				}
 			}
-			//var searchsong = new SongObject(data.message.songID, data.message.fileLocation, data.message.title, data.message.artist);
-			//playSearched(searchsong);
 		});
 		
 		$('#searchButton').click(function() {
@@ -374,12 +348,10 @@ $(window).load(function(){
 		}
 		
 		$('#searchBar').focusin(function() {
-			console.log("Focused");
 			document.getElementById("pizza").style.display = "block";
 		});
 		
 		$('#searchBar').focusout(function() {
-			console.log("Not Focused");
 			setTimeout(function(){
 				document.getElementById("pizza").style.display = "none";
 			}, 150);
