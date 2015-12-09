@@ -45,9 +45,9 @@ io.sockets.on('connection', function(socket){
     //socket.emit('message', {'message': 'hello world'});
 	
 	socket.on('searchQuery', function(data){
-		console.log("Got your message");
+		//console.log("Got your message");
 		var query = 'SELECT * FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title LIKE "%' + data.message + '%" OR artist LIKE "%' + data.message + '%" OR album LIKE "%' + data.message + '%" OR genre LIKE "%' + data.message + '%")';
-		console.log(query);
+		//console.log(query);
 		
 		pool.getConnection(function(error,connection){
 			if (error) {

@@ -23,10 +23,8 @@
 			<ul class="sidebar-list">
 				<li>
 					<input type="text" name="q" placeholder="Search..." id="searchBar" />
-					<ul class="results" id="pizza" >
-					</ul>
+					<ul class="results" id="pizza" />
 				</li>
-				<li><button id="searchButton">Send Query</button></li>
 			</ul>
 		</div>
 		<!--Contains header, footer, and centered player-->
@@ -44,17 +42,17 @@
 					<div class="circle" data-anim="base left"></div>
 					<div class="circle" data-anim="base right"></div>
 				</div>
-				<button id="playPauseButton" onclick="playPause('song')" class="fa fa-play"></button>
-				<div class="buttonContainer"><button class="playerButton" onclick="restartSong()"><i class="fa fa-fast-backward"></i></button></div>
-				<div class="buttonContainer"><button class="playerButton" onclick="nextSong()"><i class="fa fa-fast-forward"></i></button></div>
-				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume-=0.1"><i class="fa fa-volume-down"></i></button></div>
-				<div class="buttonContainer"><button class="playerButton" onclick="document.getElementById('song').volume+=0.1"><i class="fa fa-volume-up"></i></button></div>
+				<button id="playPauseButton"  class="fa fa-play"></button>
+				<div class="buttonContainer"><button class="playerButton" id="backButton"><i class="fa fa-fast-backward"></i></button></div>
+				<div class="buttonContainer"><button class="playerButton" id="nextButton"><i class="fa fa-fast-forward"></i></button></div>
+				<div class="buttonContainer"><button class="playerButton" id="volumeDownInc"><i class="fa fa-volume-down"></i></button></div>
+				<div class="buttonContainer"><button class="playerButton" id="volumeUpInc"><i class="fa fa-volume-up"></i></button></div>
 			</div>
 
 			<!--Contains footer information: Timeline and currently a quick mute button.-->
 			<div id="playerWrapper">
 				<div id="audioplayer" class="size-med">
-				  	<div id="songSlider" onclick="setSongPosition(this,event)">
+				  	<div id="songSlider">
 				  		<div id="songTimeA">0:00</div>
 				  		<div id="songTimeB"></div>
 				  		<div id="trackProgress">
@@ -63,15 +61,15 @@
 				  		</div>
 				 	</div>
 				  	<div id="volume-container">
-				    	<div id="volume" onclick="muteAudio()"><div id="volume-icon"></div><span>)</span><span>)</span><span>)</span></div>
-				    	<div id="volumeUp" onclick="changeVolume(10, 'up')">+</div><br>
-				    	<div id="volumeDown" onclick="changeVolume(10, 'down')">-</div>
-				    	<div id="volumeMeter" onclick="setNewVolume(this,event)"><div id="volumeStatus"></div></div>
+				    	<div id="volume"><div id="volume-icon"></div><span>)</span><span>)</span><span>)</span></div>
+				    	<div id="volumeUp">+</div><br>
+				    	<div id="volumeDown">-</div>
+				    	<div id="volumeMeter"><div id="volumeStatus"></div></div>
 				  	</div>
 				</div>
 				<!--Holds the real audio tag that the former tags and javascript are manipulating-->
 				<div id="songWrapper">
-					<audio id="song" ontimeupdate="updateTime(); updatePlaylist();"></audio>
+					<audio id="song"/>
 				</div>
 			</div>
 		</div>
