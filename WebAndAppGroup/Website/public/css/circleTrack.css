@@ -8,8 +8,11 @@
 /*This was literally copy and pasted*/
 
 .wrapper {
-    width: 100px; /* Set the size of the progress bar */
-    height: 100px;
+    position: fixed;
+    left: 35.6%;
+    top: 100px;
+    width: 500px; /* Set the size of the progress bar */
+    height: 500px;
     position: absolute; /* Enable clipping */
     margin-left: auto;
     margin-right: auto;
