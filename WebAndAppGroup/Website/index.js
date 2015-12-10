@@ -42,26 +42,138 @@ console.log(colors.magenta('Success! Audio site listening on port ' + port));
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket){
-    //socket.emit('message', {'message': 'hello world'});
+    //socket.emit('message', {'message') 'hello world'});
 	
 	socket.on('searchQuery', function(data){
 		//console.log("Got your message");
-		var query = 'SELECT * FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title LIKE "%' + data.message + '%" OR artist LIKE "%' + data.message + '%" OR album LIKE "%' + data.message + '%" OR genre LIKE "%' + data.message + '%")';
+		var query = 'SELECT songID, fileLocation, title, artist, album FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title LIKE "%' + data.message + '%" OR artist LIKE "%' + data.message + '%" OR album LIKE "%' + data.message + '%" OR genre LIKE "%' + data.message + '%")';
 		//console.log(query);
 		
 		pool.getConnection(function(error,connection){
-			if (error) {
+			if(error) {
 			  console.log("error connecting to the database");
 			}
 
-			connection.query(query, function(error,results,fields){
+			connection.query(query, function(error,results,songList){
 				connection.release();
 				if(!error) {
 					//console.log(results);
 					var results4 = [results[0], results[1], results[2], results[3]]
-					socket.emit('searchResult', {'message': results4});
+					socket.emit('searchResult', {'message' : results4});
 				}
 			});
+		});
+    });
+	
+	socket.on('generatePlaylist', function(data){
+		//console.log("Got your message");
+		console.log(data.message);
+		
+		//var song;
+		//var songList;
+		
+		var songQuery = "SELECT artist, album, year, genre, duration, bpm, loudness, songKey, scale, chordsKey, chordsScale," 
+               + " chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossingRate,"
+               + " intensity, title FROM SONGS, ARTISTS, ALBUMS, GENRES WHERE ALBUMS.albumID = SONGS.albumID"
+               + " AND GENRES.genreID = SONGS.genreID AND ALBUMS.artistID = ARTISTS.artistID AND songID = " + data.message;
+		
+		var playlistQuery = "SELECT artist, album, year, genre, duration, bpm, loudness, songKey, scale, chordsKey, chordsScale," 
+               + " chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossingRate,"
+               + " intensity, title, fileLocation FROM SONGS, ARTISTS, ALBUMS, GENRES WHERE ALBUMS.albumID = SONGS.albumID"
+               + " AND GENRES.genreID = SONGS.genreID AND ALBUMS.artistID = ARTISTS.artistID AND songID != " + data.message;
+
+		pool.getConnection(function(error,connection){
+			if(error) {
+			  console.log("error connecting to the database");
+			}
+			
+			connection.query(songQuery, function(error,song,fields){
+				if(!error) {
+					
+				}
+				else{console.log(error);}
+			
+			
+				connection.query(playlistQuery, function(error,songList,fields){
+					connection.release();				
+					if(error) {
+						console.log(error);
+					}
+					else{
+						
+						weight =
+						[10, //0  Artist
+						  10, //1  Album
+						  5,  //2  Year
+						  20, //3  Genre
+						  5,  //4  Duration
+						  20, //5  BPM
+						  5,  //6  Loudness
+						  10, //7  Key
+						  5,  //8  Scale
+						  10, //9  Chords Key
+						  5,  //10 Chords Scale
+						  5,  //11 Chords Changes Rate
+						  5,  //12 Chords Number Rate
+						  5,  //13 Danceability
+						  20,  //14 Bassiness
+						  10,  //15 Dynamic Complexity
+						  5,  //16 Zero Cross Rate
+						  10] //17 Intensity
+						var threshold = 70;
+						
+						var playlist = [];
+						
+						for(i = 0; i < songList.length; i++) {
+							var score = 0;
+
+							if(songList[i].artist == song[0].artist)
+								score += weight[0];
+							if(songList[i].album == song[0].album)
+								score += weight[1];
+							if(songList[i].year-5 <= song[0].year & (songList[i].year+5 >= song[0].year))
+								score += weight[2];
+							if(songList[i].genre == song[0].genre)
+								score += weight[3];
+							if((songList[i].duration-30 <= song[0].duration) & (songList[i].duration+30 >= song[0].duration))
+								score += weight[4];
+							if((songList[i].bpm*.50 <= song[0].bpm) & (songList[i].bpm*1.50 >= song[0].bpm))
+								score += weight[5] * (1-(Math.abs(song[0].bpm-songList[i].bpm)/song[0].bpm));
+							if((songList[i].loudness*.50 <= song[0].loudness) & (songList[i].loudness*1.50 >= song[0].loudness))
+								score += weight[6] * (1-(Math.abs(song[0].loudness-songList[i].loudness)/song[0].loudness));
+							if(songList[i].songKey == song[0].songKey)
+								score += weight[7];
+							if(songList[i].scale == song[0].scale)
+								score += weight[8];
+							if(songList[i].chordsKey == song[0].chordsKey)
+								score += weight[9];
+							if(songList[i].chordsScale == song[0].chordsScale)
+								score += weight[10];
+							if((songList[i].chordsChangesRate*.50 <= song[0].chordsChangesRate) & (songList[i].chordsChangesRate*1.50 >= song[0].chordsChangesRate))
+								score += weight[11] * (1-(Math.abs(song[0].chordsChangesRate-songList[i].chordsChangesRate)/song[0].chordsChangesRate));
+							if((songList[i].chordsNumberRate*.50 <= song[0].chordsNumberRate) & (songList[i].chordsNumberRate*1.50 >= song[0].chordsNumberRate))
+								score += weight[12] * (1-(Math.abs(song[0].chordsNumberRate-songList[i].chordsNumberRate)/song[0].chordsNumberRate));
+							if((songList[i].danceability*.50 <= song[0].danceability) & (songList[i].danceability*1.50 >= song[0].danceability))
+								score += weight[13] * (1-(Math.abs(song[0].danceability-songList[i].danceability)/song[0].danceability));
+							if((songList[i].bassiness*.50 <= song[0].bassiness) & (songList[i].bassiness*1.50 >= song[0].bassiness))
+								score += weight[14] * (1-(Math.abs(song[0].bassiness-songList[i].bassiness)/song[0].bassiness));
+							if((songList[i].dynamicComplexity*.50 <= song[0].dynamicComplexity) & (songList[i].dynamicComplexity*1.50 >= song[0].dynamicComplexity))
+								score += weight[15] * (1-(Math.abs(song[0]-songList[i])/song[0]));
+							if((songList[i].zeroCrossingRate*.50 <= song[0].zeroCrossingRate) & (songList[i].zeroCrossingRate*1.50 >= song[0].zeroCrossingRate))
+								score += weight[16] * (1-(Math.abs(song[0].zeroCrossingRate-songList[i].zeroCrossingRate)/song[0].zeroCrossingRate));
+							if(songList[i].intensity == song[0].intensity)
+								score += weight[17];
+								
+							if(score >= threshold)
+							{
+								console.log(songList[i].title);
+								playlist.push(songList[i]);
+							}
+						}
+						socket.emit('playlist', {'message' : playlist});
+					}		
+				});
+			});	
 		});
     });
 });

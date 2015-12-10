@@ -23,12 +23,13 @@ $(window).load(function(){
 			//var songSource = document.getElementById('songSource'); //Source tag inside the audio tag
 			document.getElementById("song").ontimeupdate = function() { updateTime(); };
 			
+			
 			var song_1 = new SongObject(0, "/SongUpload/Songs/somethings-gotta-give_all-time-low_future-hearts.mp3", "Something's Gotta Give", "All Time Low");
 			var song_2 = new SongObject(1, "/SongUpload/Songs/break-your-little-heart_all-time-low_nothing-personal.mp3", "Break Your Little Heart", "All Time Low");
 			var song_3 = new SongObject(3, "/SongUpload/Songs/the-anthem_good-charlotte_the-young-and-the-hopeless.mp3", "The Anthem", "Good Charlotte");
-
+		
 			//Debug song destination array
-			var songSrc = [song_1, song_2, song_3];
+			var songSrc = [song_1];
 			currentSongSrc = 0;
 
 			//Looks in the testAudio folder using this string.
@@ -336,6 +337,14 @@ $(window).load(function(){
 			}
 		});
 		
+		socket.on('playlist', function(data){
+			console.log(data.message);
+			for(i = 0; i < data.message.length; i++)
+			{
+				songSrc.push(new SongObject(data.message[i].songID, data.message[i].fileLocation, data.message[i].title, data.message[i].artist));
+			}
+		});
+		
 		function queryDatabase() {
 			var query = document.getElementById('searchBar').value;
 			socket.emit('searchQuery', {'message': query});
@@ -343,9 +352,11 @@ $(window).load(function(){
 		
 		function clicky(object) {
 			var searchsong = new SongObject(object.source_data.songID, object.source_data.fileLocation, object.source_data.title, object.source_data.artist);
+			console.log(object);
 			playSearched(searchsong);
 			console.log(object.source_data.artist);
 			appendMeta(object.source_data.title, object.source_data.artist);
+			socket.emit('generatePlaylist', {'message': object.source_data.songID});
 		}
 		
 		

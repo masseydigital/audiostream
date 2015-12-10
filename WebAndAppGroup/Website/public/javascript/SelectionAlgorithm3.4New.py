@@ -66,7 +66,7 @@ print(result[1])
 b= 0
 index = 0
 i= 0
-look_for_this_song = "Alcohol"
+look_for_this_song = "Alcohol" #set to song id
 for fields in result:
         try:
                 
