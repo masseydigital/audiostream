@@ -45,10 +45,8 @@ io.sockets.on('connection', function(socket){
     //socket.emit('message', {'message') 'hello world'});
 	
 	socket.on('searchQuery', function(data){
-		//console.log("Got your message");
 		var query = 'SELECT songID, fileLocation, title, artist, album FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title LIKE "%' + data.message + '%" OR artist LIKE "%' + data.message + '%" OR album LIKE "%' + data.message + '%" OR genre LIKE "%' + data.message + '%")';
-		//console.log(query);
-		
+
 		pool.getConnection(function(error,connection){
 			if(error) {
 			  console.log("error connecting to the database");
@@ -57,7 +55,6 @@ io.sockets.on('connection', function(socket){
 			connection.query(query, function(error,results,songList){
 				connection.release();
 				if(!error) {
-					//console.log(results);
 					var results4 = [results[0], results[1], results[2], results[3]]
 					socket.emit('searchResult', {'message' : results4});
 				}
@@ -66,11 +63,6 @@ io.sockets.on('connection', function(socket){
     });
 	
 	socket.on('generatePlaylist', function(data){
-		//console.log("Got your message");
-		console.log(data.message);
-		
-		//var song;
-		//var songList;
 		
 		var songQuery = "SELECT artist, album, year, genre, duration, bpm, loudness, songKey, scale, chordsKey, chordsScale," 
                + " chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossingRate,"
@@ -166,7 +158,7 @@ io.sockets.on('connection', function(socket){
 								
 							if(score >= threshold)
 							{
-								console.log(songList[i].title);
+								//console.log(songList[i].title);
 								playlist.push(songList[i]);
 							}
 						}

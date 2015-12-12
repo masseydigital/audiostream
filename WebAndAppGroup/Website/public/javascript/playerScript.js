@@ -46,7 +46,12 @@ $(window).load(function(){
 			});
 			
 			$('#backButton').click(function() {
-				restartSong();
+				if(song.currentTime <= 3){
+					previousSong()
+				}
+				else {
+					restartSong();
+				}
 			});
 			
 			$('#volumeDownInc').click(function() {
@@ -128,6 +133,7 @@ $(window).load(function(){
 			}
 			
 			function playSearched(songobject) {
+				songSrc[0] = songobject;
 				currentSongDir = "testAudio/" + songobject.songDir;
 				activeSong.src = currentSongDir;
 				activeSong.load();
@@ -237,13 +243,28 @@ $(window).load(function(){
 						activeSong.load();
 						appendMetaTag();
 						activeSong.play('song');
-						return true;
 					} else {
 					//Once the playlist has ended, the player is reset and loops the first song in the song object array.	
 						document.getElementById('song').currentTime = '0';
 						pause();
 						alert("No More Songs!");
-						return false;
+					}
+				}
+			}
+			
+			function previousSong(){
+				if(init){
+					if(currentSongSrc - 1 >= 0) {
+					//Sequentially goes to the next song in the playlist
+						currentSongSrc--;
+						//Used to reinitialize the audio player with a new song source
+						currentSongDir = "testAudio/" + songSrc[currentSongSrc].songDir;
+						activeSong.src = currentSongDir;
+						activeSong.load();
+						appendMetaTag();
+						activeSong.play('song');
+					} else {				
+						alert("This is the first song in your playlist");
 					}
 				}
 			}
@@ -316,8 +337,8 @@ $(window).load(function(){
 		}
 					
 		socket.on('searchResult', function(data){
-			console.log(data.message);
-			console.log(data.message.title);
+			//console.log(data.message);
+			//console.log(data.message.title);
 			while(document.getElementById("pizza").hasChildNodes()){
 				var list = document.getElementById("pizza");
 				list.removeChild(list.childNodes[0]);
@@ -338,11 +359,17 @@ $(window).load(function(){
 		});
 		
 		socket.on('playlist', function(data){
-			console.log(data.message);
-			for(i = 0; i < data.message.length; i++)
+			//console.log(data.message);
+			var message = data.message;
+			while(message.length > 0){
+				var x = Math.floor((Math.random() * message.length));
+				songSrc.push(new SongObject(message[x].songID, message[x].fileLocation, message[x].title, message[x].artist));
+				message.splice(x, 1);		
+			}
+			/*for(i = 0; i < data.message.length; i++)
 			{
 				songSrc.push(new SongObject(data.message[i].songID, data.message[i].fileLocation, data.message[i].title, data.message[i].artist));
-			}
+			}*/
 		});
 		
 		function queryDatabase() {
@@ -352,9 +379,9 @@ $(window).load(function(){
 		
 		function clicky(object) {
 			var searchsong = new SongObject(object.source_data.songID, object.source_data.fileLocation, object.source_data.title, object.source_data.artist);
-			console.log(object);
+			//console.log(object);
 			playSearched(searchsong);
-			console.log(object.source_data.artist);
+			//console.log(object.source_data.artist);
 			appendMeta(object.source_data.title, object.source_data.artist);
 			socket.emit('generatePlaylist', {'message': object.source_data.songID});
 		}
