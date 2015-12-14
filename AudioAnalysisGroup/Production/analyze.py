@@ -8,21 +8,19 @@ import datetime
 
 #########################################constant variables######################################
 
-#fileStorageFolder = "server/"
 fileStorageFolder = "/SongUpload/Songs"
 
 
 ##########################################functions###############################################
 
 #parameter is a directory for the music files
-#will print all directories and retrun all directories in an array
+#will  return all .mp3 files in that directory in an array
 def getFileList(filefolder): 
 	a = []
 	for root, dirs, files in os.walk(filefolder):
 		for file in files:
 			if file.endswith(".mp3"):
 				a.append(os.path.join(root, file))
-	#print(a) #unneccesary if returning, only used for checking files
 	return (a)
 
 #takes the full filepath (example: /home/bzachmann/Documents/test.mp3) 
@@ -54,8 +52,7 @@ def getNewFileName(filepath, title, artist, album):
 	newfilepath = os.path.join(path, newname)
 	return newfilepath
 
-#Inputs an array value and a path and will append to that text file path
-
+#appends all strings in list to a text file separated by ;;
 def appendToText(dataList, textFilePath):
 
 	with open(textFilePath, 'a') as file:
@@ -63,16 +60,19 @@ def appendToText(dataList, textFilePath):
 			file.write("{};; ".format(item))
 		file.write("\n")
 
+#creates the filepath to the files on server using the basename of the remote path
 def makeServerPath(filepath):
 	filesplits = os.path.split(filepath)
 	name = filesplits[1]
 	serverpath = os.path.join(fileStorageFolder, name)
 	return serverpath
 
+#creates the path to the text log
 def makeLogPath(filefolder):
 	logpath = os.path.join(filefolder, "log.txt")
 	return logpath
 
+#sets up logging
 def setupLogging(filefolder):
 	logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s', datefmt='%m-%d %H:%M', filename= makeLogPath(filefolder), filemode='w')
 	console = logging.StreamHandler()
@@ -87,7 +87,6 @@ def setupLogging(filefolder):
 
 ################################essentia_function_setup##########################################
 
-# here we would define all of the essentia funcitions
 
 #Input audio signal and returns the loudness
 def getLoudness(audioInput):
@@ -101,6 +100,7 @@ def getKey(audioInput):
 	keyExtractor = essentia.standard.KeyExtractor()
 	key = keyExtractor(audioInput)
 	return key
+
 #Input audio signal
 #returns chords_changes_rate, chords_histogram, chords_key, chords_number_rate, chords_progression,
 #chords_scale, chords_strength, hpcp, hpcp_highres, key_key, key_scale, key_strength
@@ -109,16 +109,21 @@ def getTone(audioInput):
 	tone = tonalExtractor(audioInput)
 	return tone
 
+#input filepath
+#output the large vector of all values of waveform known as the audio signal
 def getAudioVector(filepath):
 	loader = essentia.standard.MonoLoader(filename = filepath)
 	audio = loader()
 	return loader()
 
+#input audio signal
+#outputs the BPM or tempo
 def getBPM(audioInput):
 	bpmextractor=essentia.standard.RhythmExtractor2013()
 	bpmvalues = bpmextractor(audioInput)
 	return bpmvalues[0]
 
+#gets the tag metadata
 #return values will be 0=title, 1=Artist, 2=Ablum, 3=Year, 4=Genre, 5=Duration
 def getTagInfo(filepath):
 
@@ -166,7 +171,7 @@ def getIntensity(audioInput):
 
 
 ###################################### analyze song #################################################
-#returns the outcome of analysis (success or failure)y
+#returns the outcome of analysis (success or failure)
 def analyzeSong(filepath, textfilepath):
 
 	#setup the logging to put the log file in the same root folder that the .mp3 file is it
@@ -179,13 +184,13 @@ def analyzeSong(filepath, textfilepath):
 	tags = getTagInfo(filepath)
 	loggerSong.info("done getting tag info")
 
-	#here we should check if all the metadata is in the list( not missing any)
+	#here we check if all the metadata is in the list( not missing any)
 	for t in tags:
 		if (t == ""):
-			loggerSong.error(os.path.split(filepath)[1] + "is missing tag info. Excluding file from analysis and upload")
+			loggerSong.error(os.path.split(filepath)[1] + " is missing tag info. Excluding file from analysis and upload")
 			return os.path.split(filepath)[1] + " - Failure - missing tag info"
 
-	#change the name and update the filepath
+	#change the name and update the filepath, update the logger name as well to reflect change
 	loggerSong.info("changing the filename")
 	filename = getNewFileName(filepath, tags[0], tags[1], tags[2])
 	os.rename(filepath, filename)
@@ -193,12 +198,13 @@ def analyzeSong(filepath, textfilepath):
 	loggerSong = logging.getLogger(filebasename) #changes the name of the logger so that it has the new .mp3 name
 	loggerSong.info("renamed filename to " + os.path.split(filename)[1])
 
+	#here we should check if the file already exists in the server.  If yes.  Return to cancel anaylsis and upload
 	serverPath = makeServerPath(filename)
 	if srv.exists(serverPath):
 		loggerSong.error("file already exists on server... Excluding file from analysis and upload")
 		return filebasename + " - Failure - file already exists on server"
 
-	#here we should check if the file already exists in the server.  If yes.  Return to cancel anaylsis and upload
+
 
 
 	#get the audio vector of the .mp3 file
@@ -223,6 +229,7 @@ def analyzeSong(filepath, textfilepath):
 	scale = keyinfo[1]
 	loggerSong.info("done calculating key information")
 	
+	#get the tonal information
 	loggerSong.info("calculating tone information")
 	toneinfo = getTone(audio)
 	chordsKey = toneinfo[2]
@@ -256,19 +263,19 @@ def analyzeSong(filepath, textfilepath):
 	intensity = getIntensity(audio)
 	loggerSong.info("done calculating the intensity")
 
-	#for testing
-
-	
-
+	#create list of information to add to text document
 	toFileList = [serverPath, tags[0], tags[1], tags[2], tags[3], tags[4], tags[5], bpm, loudness, key, scale, chordsKey, chordsScale, chordsChangesRate, chordsNumberRate, danceability, bassiness, dynamicComplexity, zeroCrossRate, intensity]
 
+	#add all the info to text
 	appendToText(toFileList, textfilepath)
 
-	#here we would upload the file to the server
-	#im not 100% sure about these paths
+	#upload the song to the file storage server
 	loggerSong.info("uploading song to file storage server")
 	srv.put(localpath = filename, remotepath = serverPath)
+	srv.chmod(serverPath, 777)
 	loggerSong.info("done uploading song")
+
+	#return as success
 	return filebasename + " - Success"
 	
 ##################################### EXECUTE ######################################################
@@ -292,26 +299,34 @@ else:
 
 		#connect to server via sftp
 		srv = pysftp.Connection(host="134.129.125.114", username = "audioanalysis", password = "csci413aa")
+	
+		#get all the .mp3 files in the current directory
 		filelist = getFileList(sys.argv[1])
+
+		#set up logging
 		setupLogging(subfolderpath)
+
+		#run analysis for each song, keep track of the outcomes
 		outcomesList = []
 		for f in filelist:
 			outcome = analyzeSong(f, textfilepath)
 			outcomesList.append(outcome)
-		#here is were we would finally upload the .txt doc
-		#im not 100% sure what the path will be for the text doc
-		#will overwrite any existing files with this name
+		
 
 		#need to add a check to make sure the file exists before upload (for cases when all files are excluded from upload becuase of missing tag info or file already exists on server)
+		#upload the .txt info file
 		serverTextPath = os.path.join("/SongUpload/Information/", textname)
 		if os.path.isfile(textfilepath):
-			logging.info("Uploading" + textname)
+			logging.info("Uploading " + textname)
 			srv.put(localpath = textfilepath, remotepath = serverTextPath)
+			srv.chmod(serverTextPath, 777)
 			logging.info("Done Uploading")
 		else:
 			logging.info("No information to Upload")
 			
 		srv.close()
+
+		#print the results of all of the analyzed songs
 		print "\n\nRESULTS:"
 		for r in outcomesList:
 			print r
