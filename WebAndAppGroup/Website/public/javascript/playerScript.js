@@ -88,6 +88,8 @@ $(window).load(function(){
 		}
 
 		/*Play and Pause Methods*/{
+			
+			//Older/depricated play method use play2();
 			function play(id){
 				activeSong = document.getElementById(id);
 				activeSong.play();
@@ -98,15 +100,12 @@ $(window).load(function(){
 				document.getElementById('playPauseButton').className = 'fa fa-pause';
 			}
 			
+			//Plays the active song
 			function play2() {
 				activeSong.play();
 				document.getElementById('playPauseButton').className = 'fa fa-pause';
 				playing = true;
-				init = true;
-				//var percentageOfVolume = activeSong.volume / 1;
-				//var percentageOfVolumeMeter = document.getElementById('volumeMeter').offsetHeight * percentageOfVolume;    
-				//Fills out the volume status bar.
-				//document.getElementById('volumeStatus').style.height = Math.round(percentageOfVolumeSlider) + "px";	
+				init = true;	
 			}
 			
 			//Pauses the active song.
@@ -132,6 +131,7 @@ $(window).load(function(){
 				}
 			}
 			
+			//Takes a song object sets the current song equal to that object and plays it
 			function playSearched(songobject) {
 				songSrc[0] = songobject;
 				currentSongDir = "testAudio/" + songobject.songDir;
@@ -212,7 +212,7 @@ $(window).load(function(){
 				setVolume(percentage);
 			}
 		
-			//Mute
+			//Mute the sound of the song
 			function muteAudio() {
 				var ismuted = document.getElementById("volume").getAttribute("class") == "muted" ? true : false;
 				var curVol = document.getElementById("volume").getAttribute("muteVol");
@@ -231,6 +231,7 @@ $(window).load(function(){
 		}
 		
 		/*Manipulate Song Methods*/{
+			//Changes the next song in the playlist to be the current song
 			function nextSong() {
 				//Init returns true once the first song is played via play/pause toggle.
 				if(init){
@@ -252,6 +253,7 @@ $(window).load(function(){
 				}
 			}
 			
+			//Changes the current song to be the previous song in the playlist
 			function previousSong(){
 				if(init){
 					if(currentSongSrc - 1 >= 0) {
@@ -323,34 +325,26 @@ $(window).load(function(){
 			document.getElementById('trackProgress').style.width = Math.round(percentageOfSlider) + "px";
 		}
 
+		//When a song ends play the next song
 		$("#song").bind('ended', function() {
 			nextSong();
 		});
 		
-		function sleep(milliseconds) {
-			var start = new Date().getTime();
-			for (var i = 0; i < 1e7; i++) {
-				if ((new Date().getTime() - start) > milliseconds){
-					break;
-				}
-			}
-		}
-					
+		//When the searchResult message is received from the server			
 		socket.on('searchResult', function(data){
-			//console.log(data.message);
-			//console.log(data.message.title);
 			while(document.getElementById("pizza").hasChildNodes()){
 				var list = document.getElementById("pizza");
 				list.removeChild(list.childNodes[0]);
 			}
+			//Creates and populats the the search results for the searchbar
 			for(i = 0; i < data.message.length; i++){
 				if(data.message[i] != null)
 				{
-					//console.log(data.message[i].title);
 					var span = document.createElement('span');
 					span.innerHTML = "Song: " + data.message[i].title + "\nArtist: " + data.message[i].artist + "\nAlbum: " + data.message[i].album;
 					var li = document.createElement('li');
 					li.appendChild(span);
+					//When a searchbar item is clicked the song is played
 					li.onclick = function () {clicky(this)};
 					li.source_data = data.message[i];
 					document.getElementById('pizza').appendChild(li);
@@ -359,34 +353,29 @@ $(window).load(function(){
 		});
 		
 		socket.on('playlist', function(data){
-			//console.log(data.message);
 			var message = data.message;
 			while(message.length > 0){
 				var x = Math.floor((Math.random() * message.length));
 				songSrc.push(new SongObject(message[x].songID, message[x].fileLocation, message[x].title, message[x].artist));
 				message.splice(x, 1);		
 			}
-			/*for(i = 0; i < data.message.length; i++)
-			{
-				songSrc.push(new SongObject(data.message[i].songID, data.message[i].fileLocation, data.message[i].title, data.message[i].artist));
-			}*/
 		});
 		
+		//Sends a query to the database from the searchbar field
 		function queryDatabase() {
 			var query = document.getElementById('searchBar').value;
 			socket.emit('searchQuery', {'message': query});
 		}
 		
+		//Method that is used to play a song given a song object. Currently it is used when clicking on the results of the searchbar
 		function clicky(object) {
 			var searchsong = new SongObject(object.source_data.songID, object.source_data.fileLocation, object.source_data.title, object.source_data.artist);
-			//console.log(object);
 			playSearched(searchsong);
-			//console.log(object.source_data.artist);
 			appendMeta(object.source_data.title, object.source_data.artist);
 			socket.emit('generatePlaylist', {'message': object.source_data.songID});
 		}
 		
-		
+		//Keypress to allow the results to be updated when typing in the searchbar
 		document.getElementById("searchBar").addEventListener("keydown", searchKeypress);
 		function searchKeypress(){
 			if($("#searchBar").is(':focus')){
@@ -394,6 +383,7 @@ $(window).load(function(){
 			}
 		}
 		
+		//Sets focusin/out to display the search results that can be clicked
 		$('#searchBar').focusin(function() {
 			document.getElementById("pizza").style.display = "block";
 		});

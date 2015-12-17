@@ -8,6 +8,7 @@ var http = require('http');
 var app = express();
 var port = 8000;
 
+//mySQL database connection info
 var pool = mysql.createPool({
     host     : 'rei.cs.ndsu.nodak.edu',
     user     : 'csci413f15_1',
@@ -44,16 +45,21 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket){
     //socket.emit('message', {'message') 'hello world'});
 	
+	/*When the server receives the searchQuery message from the client
+	it will search the database for all applicable songs and return a list of 4 songs to the client*/
 	socket.on('searchQuery', function(data){
 		var query = 'SELECT songID, fileLocation, title, artist, album FROM SONGS, ALBUMS, ARTISTS, GENRES WHERE (SONGS.albumID = ALBUMS.albumID AND ALBUMS.artistID = ARTISTS.artistID AND SONGS.genreID = GENRES.genreID) AND (title LIKE "%' + data.message + '%" OR artist LIKE "%' + data.message + '%" OR album LIKE "%' + data.message + '%" OR genre LIKE "%' + data.message + '%")';
 
+		//Connect to the database
 		pool.getConnection(function(error,connection){
 			if(error) {
 			  console.log("error connecting to the database");
 			}
 
+			//Query the database
 			connection.query(query, function(error,results,songList){
 				connection.release();
+				//Return 4 lists of song information to the client
 				if(!error) {
 					var results4 = [results[0], results[1], results[2], results[3]]
 					socket.emit('searchResult', {'message' : results4});
@@ -62,6 +68,8 @@ io.sockets.on('connection', function(socket){
 		});
     });
 	
+	/*When the server receives the generatePlaylist message from the client
+	it will search the database for all applicable songs for a playlist and return them*/
 	socket.on('generatePlaylist', function(data){
 		
 		var songQuery = "SELECT artist, album, year, genre, duration, bpm, loudness, songKey, scale, chordsKey, chordsScale," 
@@ -74,23 +82,27 @@ io.sockets.on('connection', function(socket){
                + " intensity, title, fileLocation FROM SONGS, ARTISTS, ALBUMS, GENRES WHERE ALBUMS.albumID = SONGS.albumID"
                + " AND GENRES.genreID = SONGS.genreID AND ALBUMS.artistID = ARTISTS.artistID AND songID != " + data.message;
 
+		//Connect to the database
 		pool.getConnection(function(error,connection){
 			if(error) {
 			  console.log("error connecting to the database");
 			}
 			
+			//Query the database
 			connection.query(songQuery, function(error,song,fields){
 				if(!error) {
 					
 				}
 				else{console.log(error);}
 			
-			
+				//Query the database
 				connection.query(playlistQuery, function(error,songList,fields){
 					connection.release();				
 					if(error) {
 						console.log(error);
 					}
+					
+					//Calculate the songs "Likeness" value
 					else{
 						
 						weight =
@@ -155,13 +167,15 @@ io.sockets.on('connection', function(socket){
 								score += weight[16] * (1-(Math.abs(song[0].zeroCrossingRate-songList[i].zeroCrossingRate)/song[0].zeroCrossingRate));
 							if(songList[i].intensity == song[0].intensity)
 								score += weight[17];
-								
+							
+							//If the song is "Like enough" or greater then the threshold add it to the playlist
 							if(score >= threshold)
 							{
 								//console.log(songList[i].title);
 								playlist.push(songList[i]);
 							}
 						}
+						//Return the playlist to the client
 						socket.emit('playlist', {'message' : playlist});
 					}		
 				});
